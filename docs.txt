@@ -1,0 +1,17 @@
+FILE GHI CHÚ:
+
+dự án cũ đây là 1 dự án đã cấu hình rapidMQ kết nối với dự án BE 2 => tạo thành một microservice
+npm i amqplib --save // để config rapidMQ
+
+
+BUỔI 1 cấu hình dự án Node js
+
+folder: 
+utils là chứa các hàm ... ta thường hay sử dụng
+configs cấu hình kết nối ts server
+
+npm i express --save
+npm i morgan --save-dev // la 1 framework se console log ra cai trang thai cua request do! vd: time response, IP, time request, method GET, status ...
+-> co 5 loai morgan (dev, common, combine, short, tiny ...)
+npm i helmet --save
+npm i compression --save  // khi van chuyen du lieu(payload) qua nang -> tốn băng thông -> compress giúp giảm băng thông gấp 10 lần (data nhẹ hơn)
