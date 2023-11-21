@@ -1,8 +1,9 @@
 'use strict'
 
 const mongoose = require('mongoose');
+const { db: { host, name, port } } = require('../configs/config_mongodb');
 
-const connectString = `mongodb://localhost:27017/tipjavascript`
+const connectString = `mongodb://${host}:${port}/${name}`;
 const { countConnect } = require('../helpers/check.connect');
 class Database {
     //( use single ton ) init in here -> use stategy pattern to connect mysql mongoseDB or oracle 
@@ -21,7 +22,7 @@ class Database {
 
         mongoose.connect( connectString )
                 .then( _ => {
-                    console.log(`connected mongoseDB success`);
+                    console.log(`connected mongoseDB success ${host}:${port}/${name}`);
                     // use when we need to check number connect to server ... 
                     countConnect();
                 })

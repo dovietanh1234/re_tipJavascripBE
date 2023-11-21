@@ -8,7 +8,7 @@ BUỔI 1 cấu hình dự án Node js
 
 folder: 
 utils - là chứa các hàm( chuyển đổi ký tự hoa sang ký tự thường, prevent XSS, chuyển đổi ký tự ) ... ta thường hay sử dụng (Tần suất sd nhiều)
-configs - 
+configs - lưu trữ cài đặt -> tuỳ chọn cấu hình cho ứng dụng của chúng ta ( JSON, XML ... )
 helper - giúp chúng ta làm nhiều việc hơn (cần sd ms gọi)
 
 npm i express --save
@@ -20,7 +20,7 @@ npm i compression --save  // khi van chuyen du lieu(payload) qua nang -> tốn b
 BUỔI 2: connect DB mongoose ( 7 điều cần làm trong hệ thống )
 
 npm i mongoose --save
-npm i dotenv --save
+
 
 Đoạn mã:
 “if( 1 === 0 )
@@ -44,7 +44,13 @@ giúp dễ nhìn hơn.
 
 
 
-BUỔI 4
+BUỔI 4 .env
+bảo mật thông tin nhạy cảm
+.env lưu trữ thông tin nhạy cảm
+config -> lưu trữ thông tin cấu hình cho dự án
+
+npm i dotenv --save
+-> sd file .env
 
 BUỔI 5
 
