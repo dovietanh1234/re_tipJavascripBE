@@ -7,11 +7,49 @@ npm i amqplib --save // để config rapidMQ
 BUỔI 1 cấu hình dự án Node js
 
 folder: 
-utils là chứa các hàm ... ta thường hay sử dụng
-configs cấu hình kết nối ts server
+utils - là chứa các hàm( chuyển đổi ký tự hoa sang ký tự thường, prevent XSS, chuyển đổi ký tự ) ... ta thường hay sử dụng (Tần suất sd nhiều)
+configs - 
+helper - giúp chúng ta làm nhiều việc hơn (cần sd ms gọi)
 
 npm i express --save
 npm i morgan --save-dev // la 1 framework se console log ra cai trang thai cua request do! vd: time response, IP, time request, method GET, status ...
 -> co 5 loai morgan (dev, common, combine, short, tiny ...)
 npm i helmet --save
 npm i compression --save  // khi van chuyen du lieu(payload) qua nang -> tốn băng thông -> compress giúp giảm băng thông gấp 10 lần (data nhẹ hơn)
+
+BUỔI 2: connect DB mongoose ( 7 điều cần làm trong hệ thống )
+
+npm i mongoose --save
+npm i dotenv --save
+
+Đoạn mã:
+“if( 1 === 0 )
+{ 
+    mongoose.set(‘debug’, true) 
+    mongoose.set(‘debug’, { color: true }) 
+}” // print all activities when we perform query:
+trong đoạn mã Node.js của bạn được sử dụng để thiết lập chế độ gỡ lỗi (debug mode) cho Mongoose, 
+một Object Data Modeling (ODM) library cho MongoDB.
+
+Tuy nhiên, điều kiện “1 === 0” luôn trả về false, nghĩa là đoạn mã bên trong không bao giờ được thực thi. 
+Điều này có thể là do người phát triển muốn tắt chế độ gỡ lỗi và thay vì xóa đoạn mã, 
+họ đã đặt điều kiện không bao giờ đúng.
+
+Nếu bạn muốn kích hoạt chế độ gỡ lỗi, bạn có thể thay đổi điều kiện thành “1 === 1” hoặc một điều kiện khác
+mà bạn biết chắc chắn sẽ trả về true. Khi chế độ gỡ lỗi được kích hoạt, 
+Mongoose sẽ ghi lại tất cả các truy vấn MongoDB được thực thi. Cờ { color: true } sẽ làm cho log có màu, 
+giúp dễ nhìn hơn.
+
+=> single ton là tạo 1 class -> trong class tạo constructor chứa function init DB -> tạo 1 function init DB là oke!
+
+
+
+BUỔI 4
+
+BUỔI 5
+
+
+
+
+
+* nguyên tắc của lập trình ko được nhúng một số hay một chuỗi nào vào code!
