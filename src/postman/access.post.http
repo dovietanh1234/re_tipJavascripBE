@@ -1,0 +1,9 @@
+### signup
+POST http://localhost:5000/v1/api/shop/signup
+Content-Type: application/json
+
+{
+    "name": "shop vanh",
+    "email": "shopVanh@gmail.com",
+    "password": "12345678"
+}

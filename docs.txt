@@ -52,10 +52,38 @@ config -> lưu trữ thông tin cấu hình cho dự án
 npm i dotenv --save
 -> sd file .env
 
-BUỔI 5
+BUỔI 5 Api Sign-up Shop
 
+_Tải PACKAGE CHO VISUAL:
+mongo snippets for node js: 
+HTTP Client (file chỉ cẩn .http -> nó sẽ ra phương test cho chúng ta)
+npm i bcrypt --save
+npm i crypto --save
+npm i jsonwebtoken --save
 
+thêm middleware để nhận tham số từ body vào và cho phép trả về json:
+app.use(expres.json());
+// ở express version 4 người ta đã hỗ trợ url code rồi nên ko phải cài bodyParser nữa nhé thay vào đó:
+app.use( express.urlencoded({
+    extended: true     // chúng ta muốn mở rộng URL này ra!
+}))
+
+model -> service
+
+* Bây giờ có 2 cách viết:
+1 viết ES5 (dạng function)
+2 viết ES6 (dạng class) -> h ta sẽ áp dụng dạng này vào dự án!
+
+access trong Routers để chúng ta quản lý các signup, login, refresh token, sign in ...
 
 
 
 * nguyên tắc của lập trình ko được nhúng một số hay một chuỗi nào vào code!
+* trong class service -> chúng ta sẽ viết hàm có static => Tại vì chúng ta sẽ làm việc với model và service nhiều
+chúng ta viết static thì ta chỉ cần gọi PACKAGE này chấm một cái là nó ra function chứ không CẦN new instance() ... 
+* Java người ta hay viết bằng lập trình hướng đối tượng viết đối tượng này tái xử dụng đối tượng kia( tính đa hình đóng gói ) -> Hướng đối tượng
+nhưng ở Javascript người ta sẽ thay vì hướng đối tượng (xử lý đối tượng) người ta sẽ hướng về module export module ... 
+thay vì hướng đối tượng Ta sẽ hướng module này vào module kia ... đóng gói trong tính module đó => JS lập trình hướng đối tượng Module
+* nếu như bình thường sử dụng một cái Key secret để vừa sign vừa verify nó là một sai lầm phổ biến nhất hiện nay khi người ta bắt được cái 
+key secret của chúng ta người ta sẽ bắt được cái chữ ký của chúng ta và họ sẽ có thể tạo ra chữ ký của chúng ta luôn => hệ thống ngày nay 
+người ta sẽ tách biết 2 key private key & public key 
