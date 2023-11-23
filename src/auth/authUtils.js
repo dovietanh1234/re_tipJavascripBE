@@ -24,7 +24,7 @@ const createTokenPair = async (payload, publicKey, privateKey)=>{
                 console.log("decode success", decode);
             }
         })
-
+        
         return {accessToken, refreshToken}
     }catch(error){
         return error;

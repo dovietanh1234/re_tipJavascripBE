@@ -7,6 +7,7 @@ const SALT = process.env.SALT || 10;
 const { db: { R0001, R0002, R0003, R0004 } } = require('../configs/config_role');
 const keyTokenService = require("./keyToken.service");
 const { createTokenPair } = require("../auth/authUtils");
+const { getInfoData } = require("../utils");
 
 class AccessService {
     // write sign up:
@@ -25,7 +26,6 @@ class AccessService {
             }
 
             const passwordHash = await bcrypt.hash(password, 10);
-            console.log("check hash password: ", passwordHash);
 
             // step 3: if it isn't exist on server -> create it
             const newShop = await shopModel.create({
@@ -39,7 +39,15 @@ class AccessService {
             if( newShop ){
                 // create public key(verify token), private key(sign token) => asymmetric algorithm
                 const {privateKey, publicKey} = crypto.generateKeyPairSync('rsa', {    // method generateKeyPairSync() provide asymmetric algorithm  
-                    modulusLength: 4096
+                    modulusLength: 4096,
+                    publicKeyEncoding: {
+                        type: 'pkcs1',
+                        format: 'pem',
+                      },
+                      privateKeyEncoding: {
+                        type: 'pkcs1',
+                        format: 'pem'
+                      }
                 })  
 
                 // if exist {privateKey, publicKey} save publicKey in collection KeyStore in DB:
@@ -69,7 +77,7 @@ class AccessService {
                 return {
                     code: 201,
                     metadata: {
-                        shop: newShop,
+                        shop: getInfoData({fields: ['_id', 'name', 'email'], object: newShop}), // use lodash
                         tokens
                     },
                     status: 'created successfully'

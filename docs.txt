@@ -60,6 +60,7 @@ HTTP Client (file chỉ cẩn .http -> nó sẽ ra phương test cho chúng ta)
 npm i bcrypt --save
 npm i crypto --save
 npm i jsonwebtoken --save
+npm i lodash --save // sử dụng để truyền metadata trong json về cho ứng dụng rất gọn nhẹ và tiện lợi
 
 thêm middleware để nhận tham số từ body vào và cho phép trả về json:
 app.use(expres.json());

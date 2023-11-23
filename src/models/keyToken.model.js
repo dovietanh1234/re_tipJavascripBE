@@ -1,6 +1,9 @@
 'use strict'
 
-const {Schema, model} = require('mongoose'); // Erase if already required
+//!dmbgum -> generate schema for we are not write code:
+
+const mongoose = require('mongoose'); // Erase if already required
+const  { model, Schema, Types } = require('mongoose');
 
 const DOCUMENT_NAME = 'Key';
 const COLLECTION_NAME = 'Keys'
@@ -20,8 +23,8 @@ var keyTokenSchema = new Schema({
         type:Array, default: []
     }
 }, {
-    collection: COLLECTION_NAME,
-    timestamps: true
+    timestamps: true,
+    collection: COLLECTION_NAME
 });
 
 //Export the model
