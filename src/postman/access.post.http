@@ -4,6 +4,19 @@ Content-Type: application/json
 
 {
     "name": "shop vanh",
-    "email": "shopTip09@gmail.com",
+    "email": "shopTip02@gmail.com",
+    "password": "123456789"
+}
+
+
+// tạo một cái request khác có chứa headers (xử lý middleware bên trong):
+### signup
+POST http://localhost:5000/v1/api/shop/signup
+Content-Type: application/json
+x-api-key: c5657c75ab711ef1b0734aad2586af6dcdb50ec1ab5d9f23d2bae4d90f5e050f1a1a40719ce0cfd16a76f6518a4256bad3509c8027a5ae35e0c66bff62ea63fe
+
+{
+    "name": "shop vanh",
+    "email": "shopTip02@gmail.com",
     "password": "123456789"
 }

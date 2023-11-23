@@ -78,6 +78,27 @@ model -> service
 access trong Routers để chúng ta quản lý các signup, login, refresh token, sign in ...
 
 
+BUỔI 6: cấu hình middleware linh động cho API KEY PERMISSION: CHECK AN TOÀN CỦA MỘT CÁI ROUTER -> phải viết APIKEY
+Một cái hệ thống API đó có sử dụng cái version của chúng ta ko cách xử lý đó là
+tạo api key
+tạo một bảng lưu các api key ( key, status, permission )
+
+1. api key -> sẽ được tạo bởi chúng ta -> admin sẽ cung cấp cái key này 
+2. người dùng sẽ cần key này! để add vào header của service! để kèm theo
+3. sau đó: trên server sẽ verify nó nếu mà nó phù hợp trong DB của chúng ta thì chúng ta sẽ cho pass qua
+
+* Khi bạn gán req.objKey = objKey;, bạn đang thêm một thuộc tính mới có tên là objKey vào đối tượng req. 
+Giá trị của thuộc tính này là objKey, đối tượng bạn đã tìm thấy từ cơ sở dữ liệu.
+Sau đó, bạn có thể truy cập req.objKey trong bất kỳ middleware hoặc route handler nào tiếp theo trong chuỗi xử lý yêu cầu. 
+Điều này cho phép bạn chia sẻ dữ liệu giữa các phần khác nhau của ứng dụng mà không cần truy vấn cơ sở dữ liệu nhiều lần.
+=> nghĩa là tôi có thể gán một đối tượng object (Database) vào cho object req để ứng dụng có thể kiểm tra những lần sau ...
+ex: req.objKey.name == "hoang"
+
+
+
+
+
+
 
 * nguyên tắc của lập trình ko được nhúng một số hay một chuỗi nào vào code!
 * trong class service -> chúng ta sẽ viết hàm có static => Tại vì chúng ta sẽ làm việc với model và service nhiều
@@ -88,3 +109,12 @@ thay vì hướng đối tượng Ta sẽ hướng module này vào module kia .
 * nếu như bình thường sử dụng một cái Key secret để vừa sign vừa verify nó là một sai lầm phổ biến nhất hiện nay khi người ta bắt được cái 
 key secret của chúng ta người ta sẽ bắt được cái chữ ký của chúng ta và họ sẽ có thể tạo ra chữ ký của chúng ta luôn => hệ thống ngày nay 
 người ta sẽ tách biết 2 key private key & public key 
+* toán tử optional chaining "?." => cho phép chúng ta truy cập vào một thuộc tính nằm sâu trong chuỗi các đối tượng mà không cần kiểm 
+tra từng tham chiếu trong chuỗi có 'null' hay 'undefined' hay không? nếu một trong các chuỗi là 'null' or 'undefined' ... 
+toán tử optional chaining "?." sẽ ngắt chuỗi và trả về undefined thay vì ném ra lỗi.
+
+* closure -> trả về một cái hàm và cái hàm này thì có thể truy cập đến các phương thức của những thằng cha ...
+ví dụ thằng cha 1 sử dụng hàm closure -> trả về 1 giá trị khác
+      thằng cha 2 sử dụng hàm closure -> lại trả về 1 giá trị khác 
+      Điểm chung là hàm thằng cha và hàm closure không thay đổi logic
+      Điểm khác là tham số chuyền vào & có mấy thằng cha!
