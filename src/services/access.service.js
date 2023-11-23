@@ -37,29 +37,21 @@ class AccessService {
 
             // step 4: if create success -> create refresh token & access token
             if( newShop ){
-                // create public key(verify token), private key(sign token) => asymmetric algorithm
-                const {privateKey, publicKey} = crypto.generateKeyPairSync('rsa', {    // method generateKeyPairSync() provide asymmetric algorithm  
-                    modulusLength: 4096,
-                    publicKeyEncoding: {
-                        type: 'pkcs1',
-                        format: 'pem',
-                      },
-                      privateKeyEncoding: {
-                        type: 'pkcs1',
-                        format: 'pem'
-                      }
-                })  
+
+                const privateKey = crypto.randomBytes(64).toString('hex'); // convert to hexadecimal 'hex'
+                const publicKey = crypto.randomBytes(64).toString('hex');
 
                 // if exist {privateKey, publicKey} save publicKey in collection KeyStore in DB:
-                const publicKeyString = await keyTokenService.createKeyToken({
+                const key_store = await keyTokenService.createKeyToken({
                     userId: newShop._id,
-                    publicKey: publicKey
+                    publicKey: publicKey,
+                    privateKey: privateKey
                 });
 
-                if(!publicKeyString){
+                if(!key_store){
                     return {
                         code: 'XXX',
-                        message: 'publicKeyString error',
+                        message: 'key_store error',
                         status: 'error'
                     }
                 }
@@ -71,8 +63,6 @@ class AccessService {
                     publicKey, // buffer
                     privateKey // buffer
                 );
-
-                console.log("created token success: ", tokens);
 
                 return {
                     code: 201,

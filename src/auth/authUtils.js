@@ -6,13 +6,11 @@ const JWT = require('jsonwebtoken');
 const createTokenPair = async (payload, publicKey, privateKey)=>{
     try{
         //step 1: create access token throught privateKey: (payload like values we want push in the token: id, email, role ...)
-        const accessToken = await JWT.sign(payload, privateKey, {
-            algorithm: 'RS256',
+        const accessToken = await JWT.sign(payload, publicKey, {
             expiresIn: '2 days'
         })
 
         const refreshToken = await JWT.sign(payload, privateKey, {
-            algorithm: 'RS256',
             expiresIn: '7 days'
         })
 
@@ -24,6 +22,7 @@ const createTokenPair = async (payload, publicKey, privateKey)=>{
                 console.log("decode success", decode);
             }
         })
+        // just verify accessToken & not verify refresh token OK
         
         return {accessToken, refreshToken}
     }catch(error){
