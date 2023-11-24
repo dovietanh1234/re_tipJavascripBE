@@ -12,8 +12,10 @@ const { BadRequestError, forbidError } = require("../core/error.response");
 
 class AccessService {
     // write sign up:
+    
     static signUp = async ({name, email, password}) => {
         try{
+            
             //step 1: check email exist on server:
            const holdShop = await shopModel.findOne({email}).lean(); // .lean() -> help query fast more ... return pure js object 
 

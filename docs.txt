@@ -95,8 +95,14 @@ Sau đó, bạn có thể truy cập req.objKey trong bất kỳ middleware ho�
 ex: req.objKey.name == "hoang"
 
 BÀI 7 xử lý errorHandler trong API:
+=> Cách return về error thống nhất ngữ cảnh!
 _ ko phải lúc nào cx xử dụng try catch => vì vậy ta sẽ xử lý lỗi exception khi có một sự cố xảy ra
 
+
+
+BÀI 8: Cách tạo một class success response:
+=> Cách trả về success thống nhất ngữ cảnh!
+-> thống nhất ngữ cảnh của một công ty một nhóm ... 
 
 
 
