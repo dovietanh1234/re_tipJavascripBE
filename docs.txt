@@ -87,14 +87,15 @@ tạo một bảng lưu các api key ( key, status, permission )
 2. người dùng sẽ cần key này! để add vào header của service! để kèm theo
 3. sau đó: trên server sẽ verify nó nếu mà nó phù hợp trong DB của chúng ta thì chúng ta sẽ cho pass qua
 
-* Khi bạn gán req.objKey = objKey;, bạn đang thêm một thuộc tính mới có tên là objKey vào đối tượng req. 
+_ Khi bạn gán req.objKey = objKey;, bạn đang thêm một thuộc tính mới có tên là objKey vào đối tượng req. 
 Giá trị của thuộc tính này là objKey, đối tượng bạn đã tìm thấy từ cơ sở dữ liệu.
 Sau đó, bạn có thể truy cập req.objKey trong bất kỳ middleware hoặc route handler nào tiếp theo trong chuỗi xử lý yêu cầu. 
 Điều này cho phép bạn chia sẻ dữ liệu giữa các phần khác nhau của ứng dụng mà không cần truy vấn cơ sở dữ liệu nhiều lần.
 => nghĩa là tôi có thể gán một đối tượng object (Database) vào cho object req để ứng dụng có thể kiểm tra những lần sau ...
 ex: req.objKey.name == "hoang"
 
-
+BÀI 7 xử lý errorHandler trong API:
+_ ko phải lúc nào cx xử dụng try catch => vì vậy ta sẽ xử lý lỗi exception khi có một sự cố xảy ra
 
 
 

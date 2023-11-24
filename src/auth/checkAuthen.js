@@ -1,5 +1,7 @@
 'use strict'
 
+const { constant } = require('lodash');
+const { BadRequestError } = require('../core/error.response');
 const { findById } = require('../services/apiKey.service');
 
 const HEADER = {
@@ -13,6 +15,7 @@ const permisions = {
     ADMIN: '2222'
 }
 
+// middleware check this router has api key?
 const apiKey = async (req, res, next)=>{
     try{
         // check in headers does key exist in here:
@@ -42,10 +45,11 @@ const apiKey = async (req, res, next)=>{
         return next();
 
     }catch(error){
-
+        throw new BadRequestError("error exception");
     }
 }
 
+// middleware check apiKey has permission?
 const checkPermissionForApiKey = async (req, res, next) =>{
             if( !req.objKey.permissions  ){
             return res.status(403).json({
@@ -61,11 +65,26 @@ const checkPermissionForApiKey = async (req, res, next) =>{
         }
 
         return next();
-
 }
+
+// middleware handle error: ( "fn" from controller send in the parameter for middleware ... )
+/*const asyncHandle = async (req, res, next) =>{
+
+    const child_asyncHandle = fn =>{
+        return fn(req, res, next).catch(next);
+    }
+}*/
+
+const asyncHandle = fn =>{
+    return (req, res, next) => {
+            fn(req, res, next).catch(next);
+    };
+}
+
 
 
 module.exports = {
     apiKey,
-    checkPermissionForApiKey
+    checkPermissionForApiKey,
+    asyncHandle
 }

@@ -8,6 +8,7 @@ const { db: { R0001, R0002, R0003, R0004 } } = require('../configs/config_role')
 const keyTokenService = require("./keyToken.service");
 const { createTokenPair } = require("../auth/authUtils");
 const { getInfoData } = require("../utils");
+const { BadRequestError, forbidError } = require("../core/error.response");
 
 class AccessService {
     // write sign up:
@@ -18,11 +19,8 @@ class AccessService {
 
             //step 2: handle wrong case first:
             if(holdShop){
-                return {
-                    code: 'XXX',
-                    message: 'email already exist on server',
-                    status: 'error'
-                }
+                // if throw error -> controller dismiss the try catch
+                throw new BadRequestError("Error! shop already exist");
             }
 
             const passwordHash = await bcrypt.hash(password, 10);
@@ -49,11 +47,7 @@ class AccessService {
                 });
 
                 if(!key_store){
-                    return {
-                        code: 'XXX',
-                        message: 'key_store error',
-                        status: 'error'
-                    }
+                    throw new BadRequestError("Error! something error!");
                 }
 
                 // if all of above conditions are met -> create a pair tokens:
@@ -74,22 +68,12 @@ class AccessService {
                 }
             }
 
-            return {
-                code: 200,
-                metadata: 'fail to create new shop',
-                status: 'error'
-            }
+            throw new BadRequestError("Error! create account fail! pls try again");
             
 
         }catch(error){
-            return {
-                code: '400',
-                message: error.message,
-                status: 'error'
-            }
-
-
-
+         //   const a = error.toString();
+            throw new forbidError(error);
         }
     }
 
