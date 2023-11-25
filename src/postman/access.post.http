@@ -20,3 +20,14 @@ x-api-key: c5657c75ab711ef1b0734aad2586af6dcdb50ec1ab5d9f23d2bae4d90f5e050f1a1a4
     "email": "shopTip32@gmail.com",
     "password": "123456789"
 }
+
+// login:
+### login
+POST http://localhost:5000/v1/api/shop/login
+Content-Type: application/json
+x-api-key: c5657c75ab711ef1b0734aad2586af6dcdb50ec1ab5d9f23d2bae4d90f5e050f1a1a40719ce0cfd16a76f6518a4256bad3509c8027a5ae35e0c66bff62ea63fe
+
+{
+    "email": "shopTip02@gmail.com",
+    "password": "123456789"
+}

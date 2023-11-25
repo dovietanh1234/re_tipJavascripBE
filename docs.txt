@@ -104,6 +104,33 @@ BÀI 8: Cách tạo một class success response:
 => Cách trả về success thống nhất ngữ cảnh!
 -> thống nhất ngữ cảnh của một công ty một nhóm ... 
 
+Bài 9: Login Shop Api
+_ xoá cái model "keyTokenSchema" cũ đi thay bằng một model mới ( dùng để lưu các refresh-token đã sử dụng và cái mới )
+
+_ refresh-tokenn được gửi khi login làm gì? -> khi người ta login lại nhưng mà Có cookie rồi!
+-> thì FE phải mang cái cookie đó đi theo Để chúng ta biết -> Cái thằng này xưa là nó đang sử dụng cái token này! 
+và Bây giờ nó muốn login lại -> thì ta phải xoá cái token cũ đi đỡ phải truy vấn vào DB! 
+
+const findByEmail = async ({email, select = {
+    email: 1, password: 1, name: 1, status: 1, roles: 1
+}}) => {
+    return await shopModel.findOne({email}).select(select).lean();
+    // receive the value and transfer for "select" parameter through method ".select()"
+}
+.select(select) sẽ chỉ chọn các trường được định nghĩa trong đối tượng select để trả về trong kết quả. 
+
+_ tối ưu thì sử dụng await còn nếu muốn sử dụng đồng bộ ko chặn sử dụng .then()
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -8,11 +8,12 @@ const { db: { R0001, R0002, R0003, R0004 } } = require('../configs/config_role')
 const keyTokenService = require("./keyToken.service");
 const { createTokenPair } = require("../auth/authUtils");
 const { getInfoData } = require("../utils");
-const { BadRequestError, forbidError } = require("../core/error.response");
+const { BadRequestError, forbidError, unAuthorizedError } = require("../core/error.response");
+const { findByEmail } = require("./shop.service");
+const KeyTokenService = require("./keyToken.service");
 
 class AccessService {
-    // write sign up:
-    
+    // write method sign up:
     static signUp = async ({name, email, password}) => {
         try{
             
@@ -77,6 +78,55 @@ class AccessService {
          //   const a = error.toString();
             throw new forbidError(error);
         }
+    }
+
+    // write method login & logout in service:
+    static login = async ({email, password, refreshToken = null})=>{
+        /*
+        1. check email in DB 
+        2. compare password's user with password's DB 
+        3. create new access token & refresh token -> save in DB
+        4. return data( tokens & informs )
+        */
+
+        //b1 check email (write a service to check email):
+        const foundShop = await findByEmail({email});
+        if(!foundShop)throw new BadRequestError("shop not registed");
+
+        //b2. compare password's user with password's DB:
+        const match = bcrypt.compare( password, foundShop.password )
+        if(!match) throw new unAuthorizedError("password or email wrong try again!");
+
+        //3. create new access token & refresh token -> save in DB:
+        const privateKey = crypto.randomBytes(64).toString('hex'); // convert to hexadecimal 'hex'
+        const publicKey = crypto.randomBytes(64).toString('hex');
+
+        const tokens = await createTokenPair(
+            { UserId: foundShop._id, email: email, roles:  R0001}, // payloads will have:
+            publicKey, // toString('hex')
+            privateKey // buffer('hex')
+        );
+
+        // create KeyToken:
+        await KeyTokenService.createKeyToken({
+            // save privateKey & publicKey in DB & refreshToken in DB to check Security ...
+            // if someone use again refresh token -> this guy will be lock and block ...
+            userId: foundShop._id, 
+            publicKey: publicKey, 
+            privateKey: privateKey, 
+            refreshToken: tokens.refreshToken
+        })
+
+
+        return {
+            code: 200,
+            metadata: {
+                shop: getInfoData({fields: ['_id', 'name', 'email'], object: foundShop}), // use lodash
+                tokens
+            },
+            status: 'login successfully'
+        }
+
     }
 
 
