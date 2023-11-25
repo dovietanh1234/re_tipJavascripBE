@@ -3,6 +3,9 @@
 const { filter, update } = require("lodash");
 const keyTokenModel = require("../models/keyToken.model");
 const { options } = require("../routers/access");
+const { Types } = require('mongoose');
+
+
 class KeyTokenService {
 // write  function create token:
 static createKeyToken = async ({userId, publicKey, privateKey, refreshToken}) =>{
@@ -25,6 +28,16 @@ static createKeyToken = async ({userId, publicKey, privateKey, refreshToken}) =>
     }catch(error){
         return error;
     }
+}
+
+static findByUserId = async (userId)=>{
+    // if we put the string it will never find -> force type for data: 
+    //findOne({user: userId}) --> findOne({user: Types.ObjectId(userId) })
+    return await keyTokenModel.findOne({user: new Types.ObjectId(userId) }).lean();
+}
+
+static removeKeyById = async (id)=>{
+    return await keyTokenModel.deleteOne(id); // if error there will be error happen
 }
 
 }

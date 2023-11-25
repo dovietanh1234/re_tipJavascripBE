@@ -122,6 +122,10 @@ const findByEmail = async ({email, select = {
 _ tối ưu thì sử dụng await còn nếu muốn sử dụng đồng bộ ko chặn sử dụng .then()
 
 
+Bài 10: logout vs Authentication
+-> thằng này có đúng là chính chủ muốn logout hay ko? 
+-> viết một Authentication để verify cái access token ... có phải là chính nó hay ko?
+
 
 
 
@@ -152,3 +156,6 @@ ví dụ thằng cha 1 sử dụng hàm closure -> trả về 1 giá trị khác
       thằng cha 2 sử dụng hàm closure -> lại trả về 1 giá trị khác 
       Điểm chung là hàm thằng cha và hàm closure không thay đổi logic
       Điểm khác là tham số chuyền vào & có mấy thằng cha!
+
+* Khi tạo schema bằng objectId và bây giờ ta sử dụng findOne mà sử dụng kiểu string thì nó sẽ ko bao h tìm được dữ liệu
+chúng ta phải ép kiểu về objectId -> const {Types} = require('mongoose'); | .findOne( Types.objectId( UserId ) )

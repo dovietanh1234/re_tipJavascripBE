@@ -28,6 +28,13 @@ class AccessController{
     }
 
 
+    logout = async (req, res, next)=>{
+        new OK({
+            message: 'logout success',
+            metadata: await accessService.logout(req.keyStore), // req.keyStore
+        }).send(res);
+    }
+
 }
 
 
