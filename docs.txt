@@ -127,6 +127,17 @@ Bài 10: logout vs Authentication
 -> viết một Authentication để verify cái access token ... có phải là chính nó hay ko?
 
 
+Bài 11: xử lý token được sử dụng trái phép và cách xử lý:
+_ hacker lấy được (refresh-token & access-token và sử dụng)
+_ ta cùng đang sử dụng (refresh-token & access-token đó)
+-> khi access token hết hạn nó sẽ trả về access-token và refresh-token mới cho hacker or Client ( HỆ THỐNG lưu refresh token hết hạn vào black list)
+-> Và bây giờ hacker or User đang sử dụng tokens mới 
+Nhưng hacker or user còn lại sẽ tiếp tục gửi access-token & refresh token để lấy dữ liệu
+và truy cập => LÚC NÀY HỆ THỐNG SẼ PHÁT HIỆN LỖI vì ở trong Black-list ta đã lưu thông tin của refresh-token cũ 
+
+=> Hệ thống sẽ Huỷ toàn bộ các refresh-token và access-token hiện tại của USER OR HACKER ( diết nhầm còn hơn bỏ sót )
+=> Vậy thì lúc này ai có password người đó sẽ có thể vào lấy lại được access-token & refresh-token mới!
+
 
 
 

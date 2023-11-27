@@ -40,6 +40,24 @@ static removeKeyById = async (id)=>{
     return await keyTokenModel.deleteOne(id); // if error there will be error happen
 }
 
+//func: find refresh token 
+static findByRefreshTokenUsed = async (refreshToken)=>{
+    // if refresh token was exist in array:
+    return await keyTokenModel.findOne({ refreshTokensUsed: refreshToken }).lean();
+}
+
+// delete token's key func:
+static deleteKeyById = async (userId)=>{
+    return await keyTokenModel.deleteOne(userId); // if had error -> alter this code to "user: new Types.ObjectId(userId)"
+}
+
+// find refresh token is using present in DB:
+static findByRefreshToken = async (refreshToken)=>{
+    // if refresh token was exist in array:
+    return await keyTokenModel.findOne({ refreshToken });
+}
+
+
 }
 
 module.exports = KeyTokenService; // because use static function so web just export a class ( not a new instance's class )

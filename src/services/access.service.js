@@ -6,7 +6,7 @@ const crypto = require('crypto');
 const SALT = process.env.SALT || 10;
 const { db: { R0001, R0002, R0003, R0004 } } = require('../configs/config_role');
 const keyTokenService = require("./keyToken.service");
-const { createTokenPair } = require("../auth/authUtils");
+const { createTokenPair, verifyJWT } = require("../auth/authUtils");
 const { getInfoData } = require("../utils");
 const { BadRequestError, forbidError, unAuthorizedError } = require("../core/error.response");
 const { findByEmail } = require("./shop.service");
@@ -135,6 +135,56 @@ class AccessService {
         console.log('delete delKey: ' + delKey);
         return delKey;
     }
+
+    // WRITE refresh-token Handle func:
+    static handleRefreshToken = async (refreshToken)=>{
+        //B1 check this token is used before:
+        const foundToken = await KeyTokenService.findByRefreshTokenUsed(refreshToken);
+
+        //B2 if the refreshToken had exist in DB( its mean which used ) -> send this refreshToken in suspection list
+        if(foundToken){
+            // decode refresh-token -> to know: who are you
+            const {UserId, email} = await verifyJWT(refreshToken, foundToken.privateKey);
+            console.log("print data of refresh token: ", UserId, email);
+
+            // when we know this userId ( system will know this userId has been leaked or hacked )
+            // disable all access-token & refresh-token of these userId in KeyStore ( remove tokens )
+            await KeyTokenService.deleteKeyById(UserId);
+            throw new forbidError("something wrong was happen!! please login again");
+        }
+
+        //if refreshToken is not exist in DB:
+        //B3  Write a func to search this refreshToken, which is using or not:
+        const holderToken = await KeyTokenService.findByRefreshToken(refreshToken);
+        if(!holderToken) throw new unAuthorizedError("shop did not register"); // if present this code isn't use
+
+        //B4 if we found refresh-token is using on system! we'll give it access for:
+        // verify is token legal: 
+        const {UserId, email} = await verifyJWT(refreshToken, holderToken.privateKey);
+        console.log("print data is using present:  ", UserId, email);
+        // check had email this user exist in DB:
+        const foundShop = await findByEmail({email});
+        if(!foundShop) throw new unAuthorizedError("shop not found"); 
+
+        // B5 return new TOKENS update new tokens -> save old tokens in tokens used list:
+        const tokens = await createTokenPair({ UserId: UserId, email: email, roles:  R0001}, // payloads will have:
+        holderToken.publicKey, // still keep the old public key in DB
+        holderToken.privateKey // still keep the old private key in DB
+    );
+        // ".lean()" must use in case return a object and render for client 
+        // update new tokens: dismiss "lean()" in holderToken -> must to update data
+        await holderToken.updateOne({
+            refreshToken: tokens.refreshToken,
+            $push: {
+                refreshTokensUsed: refreshToken // this refreshToken parameter has been used to create new TOKENS
+            }
+        })
+
+      return {
+            user: {UserId, email},
+            tokens
+      }  
+    } 
 
 }
 

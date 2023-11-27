@@ -32,6 +32,18 @@ x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8
     "password": "123456789"
 }
 
+// refreshToken:
+### refreshToken
+POST http://localhost:5000/v1/api/shop/refreshToken
+Content-Type: application/json
+x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
+x-client-id: 6561879dfb0e542382ad7dd7
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDEwODI4NzcsImV4cCI6MTcwMTI1NTY3N30.5tRgB_5GILxW-Obe1eiezCh6nR2IcUxHUOW3YB2vAT8
+
+{
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDEwODI4NzcsImV4cCI6MTcwMTY4NzY3N30.udsg_3QQA5Ac8cpNF0rWTocgmbWPBynFV3wems0P7mE"
+}
+
 
 // logout:
 ### logout
@@ -39,7 +51,7 @@ POST http://localhost:5000/v1/api/shop/logout
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 x-client-id: 6561879dfb0e542382ad7dd7
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDA4OTE0OTUsImV4cCI6MTcwMTA2NDI5NX0.7RJnk14NmL6CbhlwCc8Xz7TelA-FpnNUydcPofD_mYE
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDEwODMxMTcsImV4cCI6MTcwMTI1NTkxN30.wixNN1piGb_uejdIj1QSSEuAF0Kj2JVJNydlD5S7Uag
 
 {
 }
