@@ -138,7 +138,7 @@ và truy cập => LÚC NÀY HỆ THỐNG SẼ PHÁT HIỆN LỖI vì ở trong B
 => Hệ thống sẽ Huỷ toàn bộ các refresh-token và access-token hiện tại của USER OR HACKER ( diết nhầm còn hơn bỏ sót )
 => Vậy thì lúc này ai có password người đó sẽ có thể vào lấy lại được access-token & refresh-token mới!
 
-BÀI 12: schema product ecommerce - Cách thiết kế hàng triệu sản phẩm và tối ưu hoá nhanh:
+BÀI 12 13: schema product ecommerce - Cách thiết kế hàng triệu sản phẩm và tối ưu hoá nhanh:
 Database -> bắt nguồn từ thiết kế schema hoàn chỉnh Đúng cú pháp -> tăng tốc ứng dụng của chúng ta rất là nhanh
  Tìm hiểu về kiến trúc lược đồ của product
  
@@ -150,8 +150,11 @@ Database -> bắt nguồn từ thiết kế schema hoàn chỉnh Đúng cú phá
  product_thumb
 atribute_child( different )
 
+"Schema.Types.Mixed" => cho phép lưu trữ các models riêng của của attributes( sẽ có nhiều đối tượng và ta sẽ cho phép nó được 
+lưu theo kiểu đối tượng khác nhau ví dụ: clothing, electronic ... mỗi đối tượng sẽ có kiểu properties khác nhau nhưng ta đều cho
+phép lưu vào trong model ) 
 
-
+"super()" chính là gọi class cha! -> Điều này giúp bạn tránh lặp lại các đoạn code giống nhau trong các lớp con và lớp cha.
 
 
 

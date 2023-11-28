@@ -186,14 +186,10 @@ class AccessService {
       }  
     } 
 
-
-
-
     // UPDATE VERSION 2 OPTIMISE AND SORT MORE:
     static handleRefreshToken2 = async ({refreshToken, user, keyStore})=>{
         //B1 decode object "user", which has been handled and assigned in middleware:
        const {UserId, email} = user;
-       console.log("email +  userId has exist" + UserId , email)
         // B2 check if the refreshToken had exist in DB( its mean which used ) -> send this refreshToken in suspection list
         if(keyStore.refreshTokensUsed.includes(refreshToken)){
             await KeyTokenService.deleteKeyById(UserId);
