@@ -30,6 +30,7 @@ router.use((error, req, res, next)=>{
     return res.status(statusCode).json({
         status: 'error',
         code: statusCode,
+        stack: error.stack, // add to know where is the fail happen:
         message: error.message || 'internal server error'
     });
 });

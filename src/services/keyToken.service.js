@@ -33,7 +33,7 @@ static createKeyToken = async ({userId, publicKey, privateKey, refreshToken}) =>
 static findByUserId = async (userId)=>{
     // if we put the string it will never find -> force type for data: 
     //findOne({user: userId}) --> findOne({user: Types.ObjectId(userId) })
-    return await keyTokenModel.findOne({user: new Types.ObjectId(userId) }).lean();
+    return await keyTokenModel.findOne({user: new Types.ObjectId(userId) });
 }
 
 static removeKeyById = async (id)=>{
@@ -48,7 +48,7 @@ static findByRefreshTokenUsed = async (refreshToken)=>{
 
 // delete token's key func:
 static deleteKeyById = async (userId)=>{
-    return await keyTokenModel.deleteOne(userId); // if had error -> alter this code to "user: new Types.ObjectId(userId)"
+    return await keyTokenModel.deleteOne({user: new Types.ObjectId(userId) }); // if had error -> alter this code to "user: new Types.ObjectId(userId)"
 }
 
 // find refresh token is using present in DB:

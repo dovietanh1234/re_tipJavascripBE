@@ -7,7 +7,8 @@ const { findByUserId } = require('../services/keyToken.service');
 const HEADER = {
     API_KEY: 'x-api-key',
     AUTHORIZATION: 'authorization',
-    CLIENT_ID: 'x-client-id'
+    CLIENT_ID: 'x-client-id',
+    REFRESH_TOKEN: 'refreshtoken'
 }
 
 // CREATE ACCESS TOKEN & REFRESH TOKEN THROUGHT PAIR KEY!
@@ -69,6 +70,62 @@ const authentication = asyncHandle2(async (req, res, next)=>{
     }
 });
 
+const authentication2 = asyncHandle2(async (req, res, next)=>{
+    // B1. check userId missing???
+    const userId = req.headers[HEADER.CLIENT_ID];
+    if( !userId ) throw new unAuthorizedError("invalid request");
+
+    // B2. get access token:
+    const keyStore = await findByUserId(userId);
+    if( !keyStore ) throw new NotFoundError("userId not found");
+
+    // [additional new]: check refresh-token in headers:
+    if( req.headers[HEADER.REFRESH_TOKEN] ){
+        try{
+            const refreshToken = req.headers[HEADER.REFRESH_TOKEN];
+            // B4. check user in DB:
+            const decodeUser = JWT.verify(refreshToken, keyStore.privateKey);
+            
+            // B5. check keyStore with userId:
+            if(userId != decodeUser.UserId)throw new unAuthorizedError("invalid user");
+            
+            // B6. return next(); reassign the object User for object req (ex: req.keyStore.name or req.keyStore.email ...)
+            req.keyStore = keyStore;
+
+            // [additional new]: assign 2 values to the object:
+            req.user = decodeUser;
+            req.refreshToken = refreshToken;
+            
+            // [additional new]: after got a refreshToken -> return next() to run controller handle
+            return next();
+        }catch(error){
+            throw new BadRequestError(`${error}`);
+        }
+    }
+
+    // B3. verify token (logout client must to transfer the refresh token to logout) : 
+    const accessToken = req.headers[HEADER.AUTHORIZATION];
+    if( !accessToken ) throw new unAuthorizedError("token is not found");
+
+
+     // try-catch only use in case we handle many logics ...
+    try{
+        // B4. check user in DB:
+        const decodeUser = JWT.verify(accessToken, keyStore.publicKey);
+        
+        // B5. check keyStore with userId:
+        if(userId != decodeUser.UserId)throw new unAuthorizedError("invalid user");
+
+        // B6. return next(); reassign the object User for object req (ex: req.keyStore.name or req.keyStore.email ...)
+        req.keyStore = keyStore;
+
+        return next();
+    }catch(error){
+        throw new BadRequestError(`${error}`);
+    }
+});
+
+
 // function verify refresh-token:
 const verifyJWT = async (token, KeySecret)=>{
     return await JWT.verify(token, KeySecret);
@@ -78,7 +135,8 @@ const verifyJWT = async (token, KeySecret)=>{
 module.exports = {
     createTokenPair,
     authentication,
-    verifyJWT
+    verifyJWT, 
+    authentication2
 }
 
 /*

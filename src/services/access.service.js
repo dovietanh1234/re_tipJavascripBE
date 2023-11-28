@@ -136,7 +136,7 @@ class AccessService {
         return delKey;
     }
 
-    // WRITE refresh-token Handle func:
+    // WRITE refresh-token Handle func | VERSION 1:
     static handleRefreshToken = async (refreshToken)=>{
         //B1 check this token is used before:
         const foundToken = await KeyTokenService.findByRefreshTokenUsed(refreshToken);
@@ -184,6 +184,48 @@ class AccessService {
             user: {UserId, email},
             tokens
       }  
+    } 
+
+
+
+
+    // UPDATE VERSION 2 OPTIMISE AND SORT MORE:
+    static handleRefreshToken2 = async ({refreshToken, user, keyStore})=>{
+        //B1 decode object "user", which has been handled and assigned in middleware:
+       const {UserId, email} = user;
+       console.log("email +  userId has exist" + UserId , email)
+        // B2 check if the refreshToken had exist in DB( its mean which used ) -> send this refreshToken in suspection list
+        if(keyStore.refreshTokensUsed.includes(refreshToken)){
+            await KeyTokenService.deleteKeyById(UserId);
+            throw new forbidError("something wrong was happen!! please login again");
+        }
+
+         //if refreshToken is not exist in DB:
+        //B3  Write a func to search this refreshToken, which is using or not:
+        if(keyStore.refreshToken !== refreshToken)throw new unAuthorizedError("shop did not register");
+        
+        //B4 check had email this user exist in DB:
+        const foundShop_mdlw = await findByEmail({email});
+
+        if(!foundShop_mdlw) throw new unAuthorizedError("shop not found");
+
+        //create tokens
+        const tokens_mdlw = await createTokenPair({ UserId: UserId, email: email, roles:  R0001}, // payloads will have:
+        keyStore.publicKey, // still keep the old public key in DB
+        keyStore.privateKey // still keep the old private key in DB
+        );
+
+        await keyStore.updateOne({
+            refreshToken: tokens_mdlw.refreshToken,
+            $push: {
+                refreshTokensUsed: refreshToken // this refreshToken parameter has been used to create new TOKENS
+            }
+        })
+
+      return {
+            user,
+            tokens_mdlw
+      } 
     } 
 
 }

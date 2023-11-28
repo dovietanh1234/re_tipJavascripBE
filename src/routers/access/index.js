@@ -3,7 +3,7 @@
 const express = require('express');
 const accessController = require('../../controllers/access.controller');
 const { asyncHandle2 } = require('../../helpers/asyncHandle2');
-const { authentication } = require('../../auth/authUtils');
+const { authentication2 } = require('../../auth/authUtils');
 const router = express.Router();
 
 
@@ -14,7 +14,7 @@ router.post('/shop/login', asyncHandle2(accessController.login));
 
 
 // write a func authen for logout ( whether it's itself or not ... ):
-router.use(authentication);
+router.use(authentication2);
 router.post('/shop/logout', asyncHandle2(accessController.logout));
 router.post('/shop/refreshToken', asyncHandle2(accessController.handleRefreshToken));
 
