@@ -138,6 +138,17 @@ và truy cập => LÚC NÀY HỆ THỐNG SẼ PHÁT HIỆN LỖI vì ở trong B
 => Hệ thống sẽ Huỷ toàn bộ các refresh-token và access-token hiện tại của USER OR HACKER ( diết nhầm còn hơn bỏ sót )
 => Vậy thì lúc này ai có password người đó sẽ có thể vào lấy lại được access-token & refresh-token mới!
 
+BÀI 12: schema product ecommerce - Cách thiết kế hàng triệu sản phẩm và tối ưu hoá nhanh:
+Database -> bắt nguồn từ thiết kế schema hoàn chỉnh Đúng cú pháp -> tăng tốc ứng dụng của chúng ta rất là nhanh
+ Tìm hiểu về kiến trúc lược đồ của product
+ 
+ polymorphic pattern (1)
+ product:
+ product_name
+ product_price
+ product_sold
+ product_thumb
+atribute_child( different )
 
 
 
@@ -170,3 +181,6 @@ ví dụ thằng cha 1 sử dụng hàm closure -> trả về 1 giá trị khác
 
 * Khi tạo schema bằng objectId và bây giờ ta sử dụng findOne mà sử dụng kiểu string thì nó sẽ ko bao h tìm được dữ liệu
 chúng ta phải ép kiểu về objectId -> const {Types} = require('mongoose'); | .findOne( Types.objectId( UserId ) )
+* 1 collection mongose DB -> 1 document giới hạn hiện tại là 16mb -> vượt quá 16mb (ko cho lưu nữa)
+mongose DB cho phép chúng ta có 100 objects lồng nhau nested object 100 
+mongose DB được thiết kế xử lý khối lượng lớn và Có thể mở rộng theo chiều ngang hay chiều dọc ... để xử lý dữ liệu nhiều hơn
