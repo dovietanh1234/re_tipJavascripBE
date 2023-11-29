@@ -173,6 +173,7 @@ sử dụng toán từ "spread opertator " giải các giá trị cũ vào và t
 -> Nhược điểm đang xảy ra nếu chúng ta thêm một attribute like: Furniture, Computer ... thì chùng ta sẽ lại phải sửa class FactoryProduct:
 trong kiến trúc của SOLID -> chúng ta ko nên động chạm vào đóng mở sửa đổi ở class Factory ...
 
+BÀI 15: SỬA LẠI FactoryProduct không bị vi phạm nguyên tắc trong lập trình SOLID ( độ phức tạp cao hơn )
 
 
 

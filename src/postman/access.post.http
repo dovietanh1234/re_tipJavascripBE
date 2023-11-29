@@ -78,15 +78,15 @@ x-client-id: 6561879dfb0e542382ad7dd7
 authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDEyMjYyMjUsImV4cCI6MTcwMTM5OTAyNX0.Q17ZwAu4ry39aSMi1TYfBaNfuPJeiWC9jkSRxrAKncc
 
 {
-    "product_name": "Ipone 8",
-    "product_thumb": "https://bizweb.dktcdn.net/thumb/1024x1024/100/375/548/products/iphone-8-plus-co-may-mau-1.jpg?v=1579321058363",
-    "product_description": "high quantity and perfect",
-    "product_price": 5000,
+    "product_name": "Ipone 14",
+    "product_thumb": "https://cdn.tgdd.vn/Files/2023/03/28/1521853/ip-280323-101233.jpg",
+    "product_description": "discount iphone 14 ",
+    "product_price": 6000,
     "product_quantity": 500,
     "product_type": "Electronics",
     "product_attributes": {
         "manifacturer": "Apple",
-        "model": "iphone 8 plus",
-        "color": "purple"
+        "model": "iphone 14 plus",
+        "color": "Gold"
     }
 }
