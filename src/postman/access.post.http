@@ -64,7 +64,7 @@ POST http://localhost:5000/v1/api/shop/logout
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 x-client-id: 6561879dfb0e542382ad7dd7
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDExODgwOTUsImV4cCI6MTcwMTM2MDg5NX0.6U0nS7Gn-MwL5UDz2yT96VpZd-o5MqDUl-Yyiv8jEzo
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDEyMjYyMjUsImV4cCI6MTcwMTM5OTAyNX0.Q17ZwAu4ry39aSMi1TYfBaNfuPJeiWC9jkSRxrAKncc
 
 {
 }
@@ -75,19 +75,18 @@ POST http://localhost:5000/v1/api/shop/create/product
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 x-client-id: 6561879dfb0e542382ad7dd7
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDExODgwOTUsImV4cCI6MTcwMTM2MDg5NX0.6U0nS7Gn-MwL5UDz2yT96VpZd-o5MqDUl-Yyiv8jEzo
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDEyMjYyMjUsImV4cCI6MTcwMTM5OTAyNX0.Q17ZwAu4ry39aSMi1TYfBaNfuPJeiWC9jkSRxrAKncc
 
 {
-    "product_name": "new_jeans",
-    "product_thumb": "https://assemblylabel.com/cdn/shop/products/c01a596fd3cb4413bad785724b510096_600x.jpg?v=1693190679",
+    "product_name": "Ipone 8",
+    "product_thumb": "https://bizweb.dktcdn.net/thumb/1024x1024/100/375/548/products/iphone-8-plus-co-may-mau-1.jpg?v=1579321058363",
     "product_description": "high quantity and perfect",
-    "product_price": 50,
-    "product_quantity": 5,
-    "product_type": "Clothing",
-    "product_shop": "6561879dfb0e542382ad7dd7",
+    "product_price": 5000,
+    "product_quantity": 500,
+    "product_type": "Electronics",
     "product_attributes": {
-        "brand": "Levis",
-        "size": "L",
-        "material": "demin"
+        "manifacturer": "Apple",
+        "model": "iphone 8 plus",
+        "color": "purple"
     }
 }

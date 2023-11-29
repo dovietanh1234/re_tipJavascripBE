@@ -18,7 +18,7 @@ class ProductFactory{
 
         // use swich to handle "type":
         switch(type){
-            case 'Electronic':
+            case 'Electronics':
                 return new Electronic(payload).createProduct(); 
             case 'Clothing':
                 return new Clothing(payload).createProduct();
@@ -55,8 +55,11 @@ class Product{
     }
 
     // create new Product:
-    async createProduct(){
-        return await product.create(this);  // create "this" above parameters in constructor!
+    async createProduct(product_id){
+        return await product.create({
+            ...this, 
+            _id: product_id
+        });  // create "this" above parameters in constructor!
     }
 }
 
@@ -65,16 +68,19 @@ class Product{
 class Clothing extends Product{
     // there we only inherit by key word super() -> and not to write again properties ... 
 
-    // override method:
+    // override method Product's createProduct: ( to use "this" in scope )
     async createProduct(){
 
         //firstly we will save newClothing ( create child Class atribute first ) :
-        const newClothing = await clothing.create(this.product_attributes); //"Schema.Types.Mixed" in model
+        const newClothing = await clothing.create({
+            ...this.product_attributes,
+            product_shop: this.product_shop
+        }); //"Schema.Types.Mixed" in model
         if(!newClothing) throw new BadRequestError("clothing create fail! please try again");
 
         //secondly we create parent class Product  ( create Parent Class atribute after ):
         //Bcs we inherit Product class | parent Product class symbolize by keyword "super()" -> help us avoid duplicate code!
-        const newProduct = await super.createProduct();
+        const newProduct = await super.createProduct(newClothing._id);
         if(!newProduct) throw new BadRequestError("Product create fail! please try again");
 
         //thirdly return a parent Product class is filfull (object)
@@ -90,12 +96,15 @@ class Electronic extends Product{
     async createProduct(){
 
         //firstly we will save newClothing ( create child Class atribute first ) :
-        const newElectronic = await electronic.create(this.product_attributes); //"Schema.Types.Mixed" in model
+        const newElectronic = await electronic.create({
+            ...this.product_attributes,
+            product_shop: this.product_shop
+        }); //"Schema.Types.Mixed" in model
         if(!newElectronic) throw new BadRequestError("electronic create fail! please try again");
 
         //secondly we create parent class Product  ( create Parent Class atribute after ):
         //Bcs we inherit Product class | parent Product class symbolize by keyword "super()" -> help us avoid duplicate code!
-        const newProduct = await super.createProduct();
+        const newProduct = await super.createProduct(newElectronic._id);
         if(!newProduct) throw new BadRequestError("Product create fail! please try again");
 
         //thirdly return a parent Product class is filfull (object)
@@ -112,12 +121,15 @@ class Funiture extends Product{
     async createProduct(){
 
         //firstly we will save newClothing ( create child Class atribute first ) :
-        const newFuniture = await funiture.create(this.product_attributes); //"Schema.Types.Mixed" in model
+        const newFuniture = await funiture.create({
+            ...this.product_attributes,
+            product_shop: this.product_shop
+        }); //"Schema.Types.Mixed" in model
         if(!newFuniture) throw new BadRequestError("funiture create fail! please try again");
 
         //secondly we create parent class Product  ( create Parent Class atribute after ):
         //Bcs we inherit Product class | parent Product class symbolize by keyword "super()" -> help us avoid duplicate code!
-        const newProduct = await super.createProduct();
+        const newProduct = await super.createProduct(newFuniture._id);
         if(!newProduct) throw new BadRequestError("Product create fail! please try again");
 
         //thirdly return a parent Product class is filfull (object)

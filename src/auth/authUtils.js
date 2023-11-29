@@ -116,6 +116,7 @@ const authentication2 = asyncHandle2(async (req, res, next)=>{
         // B5. check keyStore with userId:
         if(userId != decodeUser.UserId)throw new unAuthorizedError("invalid user");
 
+        req.user = decodeUser;
         // B6. return next(); reassign the object User for object req (ex: req.keyStore.name or req.keyStore.email ...)
         req.keyStore = keyStore;
 

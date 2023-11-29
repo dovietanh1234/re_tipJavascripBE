@@ -156,6 +156,22 @@ phép lưu vào trong model )
 
 "super()" chính là gọi class cha! -> Điều này giúp bạn tránh lặp lại các đoạn code giống nhau trong các lớp con và lớp cha.
 
+Factory pattern Product ( đưa child Product Clothing, Electronic...  )  
+Parent Product( tạo Product với các common properties )  ->     child Product Clothing, Electronic... extends Product ( tạo attribute Clothing, Electronic ... trước rồi đến tạo Product sau! )
+
+
+BÀI 14: Tối ưu lại API SERVICE Products (optimal)
+Logic -> tối ưu tốc độ
+update logic ... 
+
+xử lý lấy userId từ refresh-token
+xử lý thay đổi dữ liệu attribute model clothing có thêm trường product_shop, và id của nó sẽ trùng lặp với id của Product cha của nó
+-> truy vấn cho đúng
+
+sử dụng toán từ "spread opertator " giải các giá trị cũ vào và thêm dữ liệu mới cho trường nhất định.
+
+-> Nhược điểm đang xảy ra nếu chúng ta thêm một attribute like: Furniture, Computer ... thì chùng ta sẽ lại phải sửa class FactoryProduct:
+trong kiến trúc của SOLID -> chúng ta ko nên động chạm vào đóng mở sửa đổi ở class Factory ...
 
 
 

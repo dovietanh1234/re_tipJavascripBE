@@ -25,7 +25,8 @@ const productSchema = new Schema({
 const clothingSchema = new Schema({
     brand: { type: String, require: true },
     size: String, // size will be have a lot of sizes... but now we still design basic -> so we will secify that only one size is used
-    material: String
+    material: String,
+    product_shop: {type: Schema.Types.ObjectId, ref: 'Shop'}
 }, {
     collection: 'Clothes',
     timestamps: true
@@ -35,7 +36,8 @@ const clothingSchema = new Schema({
 const electronicSchema = new Schema({
     manifacturer: { type: String, require: true },
     model: String, // size will be have a lot of sizes... but now we still design basic -> so we will secify that only one size is used
-    color: String
+    color: String,
+    product_shop: {type: Schema.Types.ObjectId, ref: 'Shop'}
 }, {
     collection: 'Electronics',
     timestamps: true
@@ -45,7 +47,8 @@ const electronicSchema = new Schema({
 const funitureSchema = new Schema({
     manifacturer: { type: String, require: true },
     origin: String, // size will be have a lot of sizes... but now we still design basic -> so we will secify that only one size is used
-    material: String
+    material: String,
+    product_shop: {type: Schema.Types.ObjectId, ref: 'Shop'}
 }, {
     collection: 'Funitures',
     timestamps: true
