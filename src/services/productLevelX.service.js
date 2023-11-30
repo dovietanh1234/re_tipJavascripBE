@@ -8,8 +8,11 @@ const { findAllDrafts_repo,
         publishProduct_repo, 
         findAllPublish_repo, 
         turnOffpublishProduct_repo, 
-        searchProduct
+        searchProduct,
+        findAllProducts,
+        findProductDetail
        } = require('../models/repositories/product.repo');
+
 
 class ProductFactory{
     // Apply Strategy Pattern in here:
@@ -46,6 +49,11 @@ class ProductFactory{
         return await turnOffpublishProduct_repo({ product_shop, product_id });
     }
 
+    //method 3: UPDATE Put product:
+    static async UpdateProduct(){
+        
+    }
+
 
 
     //QUERY:
@@ -64,9 +72,20 @@ class ProductFactory{
 
     //Method 3: query search by publish:
     static async searchProduct({keySearch}){
-        console.log('key search: ' + keySearch);
         return await searchProduct({keySearch});
     }
+
+    //Method 4: select * from products:
+    static async findAllProducts({ limit = 50, sort = 'ctime', page = 1, filter = {isPublished: true} }){ //sorting "ctime" sort flow newest time
+        return await findAllProducts({limit, sort, page, filter, select: [ 'product_name', 'product_price', 'product_thumb' ]})
+    }
+
+    //Method 5: select detail product:
+    static async findProductDetail({product_id}){
+        return await findProductDetail({product_id, unSelect: ['__v']}); // if we dont want to get some fields jusst put in there likes: unSelect: ['__v', 'product_shop']
+    }
+
+
 
 
 }

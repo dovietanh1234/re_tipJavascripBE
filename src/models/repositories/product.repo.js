@@ -3,18 +3,20 @@
 const { BadRequestError } = require('../../core/error.response');
 const { product, electronic, clothing, funiture } = require('../../models/product.model');
 const { Types } = require('mongoose');
+const {getSelectData, UnGetSelectData} = require('../../utils/index');
 
-// QUERY
+// QUERY:
+// query findAllDraft_repo
 const findAllDrafts_repo = async({ query, limit, skip })=>{
     return await queryProduct({ query, limit, skip });
 }
 
-//findAllPublish_repo
+// query findAllPublish_repo
 const findAllPublish_repo = async({ query, limit, skip })=>{
     return await queryProduct({ query, limit, skip });
 }
 
-
+// query product 
 const queryProduct = async ({query, limit, skip})=>{
     return await product.find(query)
     .populate('product_shop', 'name email -_id') // get related value from user table( name, email) exception _id
@@ -25,6 +27,7 @@ const queryProduct = async ({query, limit, skip})=>{
     .exec() // is a phrase that represent: asyn await 
 }
 
+// query search
 const searchProduct = async ({  keySearch })=>{
     const regexSearch = new RegExp(keySearch);
     // to easy query for result -> we need to assign index for userName & description:
@@ -36,7 +39,25 @@ const searchProduct = async ({  keySearch })=>{
     return results;
 }
 
+// query find all products: sorting "ctime" newest time -1 to put in the update field 
+const findAllProducts = async ({ limit, sort, page, filter, select})=>{
+    const skip = (page - 1) * limit;
+    const sortBy = sort == 'ctime' ? { updateAt: -1 } : { updateAt: 1 }; // _id: -1 
+    const products = await product.find(filter)
+                                  .sort( sortBy )
+                                  .skip(skip)
+                                  .limit(limit)
+                                  .select(getSelectData(select)) // .select() only reveive the parameters by object! -> so we will change array into object through .getSelectData() func!
+                                  .lean();
+    
+    return products;                              
+}
 
+// unSelect different with select: "Select" if we want to selects 3 fields we will put in the parameters 3 fields  
+// "unSelect" it will get a lot product's fields -> exception "_v" (version) field ... so we will write a unSelect method! 
+const findProductDetail = async ({ product_id, unSelect }) =>{
+    return await product.findById( product_id ).select(UnGetSelectData(unSelect))
+}
 
 
 // CRUD:
@@ -84,5 +105,7 @@ module.exports = {
     publishProduct_repo,
     findAllPublish_repo,
     turnOffpublishProduct_repo,
-    searchProduct
+    searchProduct,
+    findAllProducts,
+    findProductDetail
 }

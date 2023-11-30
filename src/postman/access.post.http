@@ -91,7 +91,6 @@ authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZi
     }
 }
 
-// CHƯA LOGOUT( nếu logout rồi thì xoá đi ):
 
 // Create Product section 12:
 ### Create_Product Clothing
@@ -165,7 +164,7 @@ authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZi
 
 ///shop/search/:keySearch
 ### Search product:
-GET http://localhost:5000/shop/search/jean
+GET http://localhost:5000/v1/api/shop/search/jean
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 
@@ -173,4 +172,23 @@ x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8
     
 }
 
-// CHƯA ĐĂNG XUẤT LOGOUT TÀI KHOẢN:
+//find all products
+### find all products:
+GET http://localhost:5000/v1/api/shop/getall/product
+Content-Type: application/json
+x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
+
+{
+    
+}
+
+
+//shop/detail/product/:product_id
+### find detail product:
+GET http://localhost:5000/v1/api/shop/detail/product/6567f08969b2f3c414f99259
+Content-Type: application/json
+x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
+
+{
+    
+}

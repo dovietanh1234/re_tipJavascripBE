@@ -235,8 +235,39 @@ nó sẽ đưa giá trị vào biến score để sắp xếp lại các giá tr
 Bạn có thể hiểu score là một chỉ số đo lường mức độ phù hợp của document với từ khóa tìm kiếm.
 Càng cao score thì càng có nhiều khả năng document đó chứa từ khóa bạn muốn tìm
 
+BÀI 17: Các tính năng còn lại của model Product, FindAll, FinOne, SelectData, unSelectData
+update một sản phẩm ko tốn băng thông
+
+sử dụng "updateAt: -1" để sắp xếp các document trả về theo thứ tự giảm dần của trường updateAt. 
+Đây là một cách để lấy ra các document mới nhất hoặc cập nhật gần đây nhất. 
+Giá trị -1 có nghĩa là sắp xếp theo chiều ngược lại của thứ tự tự nhiên của trường updateAt, 
+tức là từ cao xuống thấp. Nếu bạn muốn sắp xếp theo thứ tự tăng dần, 
+bạn có thể dùng giá trị 1 hoặc bỏ qua giá trị này
 
 
+
+EX:
+Một hàm chuyển array -> thành object key value:
+
+const getSelectData = (select = []) => {
+    return Object.fromEntries( select.map( value => [value, 1] ) )
+}
+
+•  Bạn định nghĩa một hàm tên là getSelectData,
+ nhận vào một tham số là một mảng tên là select, 
+ có giá trị mặc định là một mảng rỗng.
+
+•  Trong hàm, bạn sử dụng phương thức map() của mảng select
+ để biến đổi mỗi phần tử của mảng thành một mảng con gồm hai phần tử:
+  phần tử đầu tiên là giá trị của phần tử ban đầu, và phần tử thứ hai là số 1. 
+  Ví dụ, nếu select là ['a', 'b', 'c'], thì kết quả của phương thức map() 
+  sẽ là [['a', 1], ['b', 1], ['c', 1]].
+
+•  Sau đó, bạn sử dụng hàm "fromEntries()" của đối tượng Object 
+để tạo ra một đối tượng từ mảng con trên, với quy tắc là phần tử 
+đầu tiên của mỗi mảng con sẽ làm khóa, và phần tử thứ hai sẽ làm giá trị.
+ Ví dụ, nếu mảng con là [['a', 1], ['b', 1], ['c', 1]], 
+ thì kết quả của hàm fromEntries() sẽ là {a: 1, b: 1, c: 1}.
 
 
 

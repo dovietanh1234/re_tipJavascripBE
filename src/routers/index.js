@@ -12,7 +12,8 @@ router.use(checkPermissionForApiKey); // put the key '0000' in the parameter
 
 
 // import routers:
-router.get('/shop/search/:keySearch', ProductController.searchProduct);
+router.use('/v1/api', require('./routersNoJwt/noJwt'));
+//router.get('/shop/search/:keySearch', ProductController.searchProduct);
 router.use('/v1/api', require('./access/index'));
 router.use('/v1/api', require('./product/index'));
 

@@ -62,7 +62,24 @@ turnOffpublishProduct = async (req, res, next)=>{
             message: 'search product success!',
             metadata: await ProductService_V2.searchProduct(req.params),
         }).send(res);
-    } 
+    }
+    
+    // get all products:
+    findAllProducts = async (req, res, next)=>{
+        new OK({
+            message: 'find all products success!',
+            metadata: await ProductService_V2.findAllProducts(req.params),
+        }).send(res);
+    }
+
+    // get product detail: findProductDetail
+    findProductDetail = async (req, res, next)=>{
+        new OK({
+            message: 'find all products success!',
+            metadata: await ProductService_V2.findProductDetail(req.params),
+        }).send(res);
+    }
+
 
 
 }
