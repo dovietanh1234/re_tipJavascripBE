@@ -29,8 +29,8 @@ class SuccessResponse {
 }
 
 class OK extends SuccessResponse{
-    constructor({message, metadata}){
-        super({message, metadata})
+    constructor({message, statusCode = 200, metadata}){
+        super({message, statusCode, metadata})
     }
 }
 

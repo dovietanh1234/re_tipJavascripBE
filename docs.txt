@@ -175,6 +175,71 @@ trong kiến trúc của SOLID -> chúng ta ko nên động chạm vào đóng m
 
 BÀI 15: SỬA LẠI FactoryProduct không bị vi phạm nguyên tắc trong lập trình SOLID ( độ phức tạp cao hơn )
 
+BÀI 16: Add tính năng isDraft, isPubic, unPublic bổ sung schema Product Service API!
+-> design and add more properties in Product Model ( rating, slug, isDraft, isPubic ... )
+npm i slugify --save
+
+_ slug rất quan trọng vì nó là "Slug là phần quan trọng của URL"
+class "RegExp()" -> new RegExp();  trong node js:
+nó dùng để tạo ra các đối tượng biểu thức chính quy (regular expression)
+
+_ Biểu thức chính quy là một chuỗi "đặc biệt" ĐƯỢC DÙNG ĐỂ SO KHỚP VỚI CÁC CHUỖI KHÁC THEO MỘT MẪU NHẤT ĐỊNH:
+ví dụ:
+const regex = new RegExp("Nguyen");
+
+console.log( regex.test("Nguyen Van A") ); // true
+console.log( regex.test("Do Viet Anh") );// false
+
+sử dụng đánh index cho trường dữ liệu name và description:
+productSchema.index({ product_name: 'text', product_description: 'text' })
+
+Mục đích: 
+-> Đây là một cách để tạo ra một chỉ mục văn bản (text index) cho các trường dữ liệu đó!
+-> giúp Ta có thể thực hiện các truy vấn tìm kiếm văn bản (text search) trên các trường đó một cách hiệu quả hơn!
+
+Ví dụ: vì đoạn code trên ta đã đánh index cho trường product_name và product_description là "text" rồi nên bây giờ
+ta CÓ THỂ sử dụng toán tử $text để tìm kiếm dữ liệu trong trường name OR description ...
+
+Giải thích đoạn code search này:
+model.js:
+productSchema.index({ product_name: 'text', product_description: 'text' })
+serive.js:
+const searchProduct = async ({  keySearch })=>{
+    const regexSearch = new RegExp(keySearch);
+    // to easy query for result -> we need to assign index for userName & description:
+    const results = await product.find(
+        {$text: { $search: regexSearch }}, 
+        {score: { $meta: 'textScore' } }   // "score" is the word it will search the most accurately
+    )
+}
+
+1. Trong file model.js, ta đã tạo ra một chỉ mục văn bản (text index) cho hai trường dữ liệu product_name và product_description 
+trong schema productSchema. giúp ta có thể thực hiện các truy vấn tìm kiếm văn bản (text search) trên các trường đó 
+một cách hiệu quả hơn.
+
+2. sử dụng phương thức find() của model product để tìm kiếm các document khớp với biểu thức chính quy của bạn, 
+bằng cách sử dụng toán tử $text
+
+3. truyền vào một đối tượng thứ hai để chỉ định một trường tên là score!
+thằng này sẽ có giá trị kết quả là KẾT QUẢ của $meta: 'textScore'. 
+Đây là một giá trị số thể hiện mức độ khớp của document với từ khóa tìm kiếm
+
+=> Mục đích đưa "score" vào là để:
+thể hiện mức độ khớp của document với từ khóa tìm kiếm. 
+Giá trị này được tính dựa trên các yếu tố như số lượng và tần suất xuất hiện của từ khóa trong document, 
+độ dài của document, và trọng số của các trường được chỉ mục. Bạn có thể sử dụng giá trị này để sắp xếp các document 
+theo thứ tự giảm dần của score, để lấy ra các document phù hợp nhất với từ khóa tìm kiếm.
+
+-Đúng vậy, khi bạn tìm kiếm được giá trị qua biểu thức "$text", 
+nó sẽ đưa giá trị vào biến score để sắp xếp lại các giá trị tìm kiếm trả về.
+Bạn có thể hiểu score là một chỉ số đo lường mức độ phù hợp của document với từ khóa tìm kiếm.
+Càng cao score thì càng có nhiều khả năng document đó chứa từ khóa bạn muốn tìm
+
+
+
+
+
+
 
 
 

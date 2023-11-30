@@ -64,18 +64,18 @@ POST http://localhost:5000/v1/api/shop/logout
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 x-client-id: 6561879dfb0e542382ad7dd7
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDEyMjYyMjUsImV4cCI6MTcwMTM5OTAyNX0.Q17ZwAu4ry39aSMi1TYfBaNfuPJeiWC9jkSRxrAKncc
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDEzMjE4MTIsImV4cCI6MTcwMTQ5NDYxMn0.9hobRSg7Sw3BJurdiq2TPSu-Pv1lROh5_2Fl2NpyclY
 
 {
 }
 
 // Create Product section 12:
-### Create_Product
+### Create_Product Electronic
 POST http://localhost:5000/v1/api/shop/create/product
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 x-client-id: 6561879dfb0e542382ad7dd7
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDEyMjYyMjUsImV4cCI6MTcwMTM5OTAyNX0.Q17ZwAu4ry39aSMi1TYfBaNfuPJeiWC9jkSRxrAKncc
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDEzMjE4MTIsImV4cCI6MTcwMTQ5NDYxMn0.9hobRSg7Sw3BJurdiq2TPSu-Pv1lROh5_2Fl2NpyclY
 
 {
     "product_name": "Ipone 14",
@@ -90,3 +90,87 @@ authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZi
         "color": "Gold"
     }
 }
+
+// CHƯA LOGOUT( nếu logout rồi thì xoá đi ):
+
+// Create Product section 12:
+### Create_Product Clothing
+POST http://localhost:5000/v1/api/shop/create/product
+Content-Type: application/json
+x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
+x-client-id: 6561879dfb0e542382ad7dd7
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDEzMjE4MTIsImV4cCI6MTcwMTQ5NDYxMn0.9hobRSg7Sw3BJurdiq2TPSu-Pv1lROh5_2Fl2NpyclY
+
+{
+    "product_name": "jean luxury",
+    "product_thumb": "https://assemblylabel.com/cdn/shop/products/c01a596fd3cb4413bad785724b510096_600x.jpg?v=1693190679",
+    "product_description": "so slight and perfect ",
+    "product_price": 250,
+    "product_quantity": 600,
+    "product_type": "Clothing",
+    "product_attributes": {
+        "brand": "material",
+        "size": "L",
+        "material": "demin"
+    }
+}
+
+
+### Get all drafts through ShopId
+GET http://localhost:5000/v1/api/shop/get/drafts
+Content-Type: application/json
+x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
+x-client-id: 6561879dfb0e542382ad7dd7
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDEzMjE4MTIsImV4cCI6MTcwMTQ5NDYxMn0.9hobRSg7Sw3BJurdiq2TPSu-Pv1lROh5_2Fl2NpyclY
+
+{
+    
+}
+
+### Get all publish through ShopId
+GET http://localhost:5000/v1/api/shop/get/publish
+Content-Type: application/json
+x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
+x-client-id: 6561879dfb0e542382ad7dd7
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDEzMjE4MTIsImV4cCI6MTcwMTQ5NDYxMn0.9hobRSg7Sw3BJurdiq2TPSu-Pv1lROh5_2Fl2NpyclY
+
+{
+    
+}
+
+
+///shop/publish/:id
+### alter to publish product on website:
+POST http://localhost:5000/v1/api/shop/publish/6567f08969b2f3c414f99259
+Content-Type: application/json
+x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
+x-client-id: 6561879dfb0e542382ad7dd7
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDEzMjE4MTIsImV4cCI6MTcwMTQ5NDYxMn0.9hobRSg7Sw3BJurdiq2TPSu-Pv1lROh5_2Fl2NpyclY
+
+{
+    
+}
+
+///shop/turnOff/publish/:id
+### alter turn off publish product on website:
+POST http://localhost:5000/v1/api/shop/turnOff/publish/6567f08969b2f3c414f99259
+Content-Type: application/json
+x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
+x-client-id: 6561879dfb0e542382ad7dd7
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDEzMjE4MTIsImV4cCI6MTcwMTQ5NDYxMn0.9hobRSg7Sw3BJurdiq2TPSu-Pv1lROh5_2Fl2NpyclY
+
+{
+    
+}
+
+///shop/search/:keySearch
+### Search product:
+GET http://localhost:5000/shop/search/jean
+Content-Type: application/json
+x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
+
+{
+    
+}
+
+// CHƯA ĐĂNG XUẤT LOGOUT TÀI KHOẢN:
