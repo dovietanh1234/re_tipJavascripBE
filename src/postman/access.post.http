@@ -23,7 +23,7 @@ x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8
 
 // login:
 ### login
-POST http://localhost:5000/v1/api/shop/login
+POST http://localhost:5000/v1/api/shop/login 
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 
@@ -64,7 +64,7 @@ POST http://localhost:5000/v1/api/shop/logout
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 x-client-id: 6561879dfb0e542382ad7dd7
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDEzMjE4MTIsImV4cCI6MTcwMTQ5NDYxMn0.9hobRSg7Sw3BJurdiq2TPSu-Pv1lROh5_2Fl2NpyclY
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE0MzgwNDUsImV4cCI6MTcwMTYxMDg0NX0.5SBHdk8rzBlGJbD6E95FNNCR-LSonYWpSHJg-yqvZYg
 
 {
 }
@@ -75,7 +75,7 @@ POST http://localhost:5000/v1/api/shop/create/product
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 x-client-id: 6561879dfb0e542382ad7dd7
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDEzMjE4MTIsImV4cCI6MTcwMTQ5NDYxMn0.9hobRSg7Sw3BJurdiq2TPSu-Pv1lROh5_2Fl2NpyclY
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE0MzgwNDUsImV4cCI6MTcwMTYxMDg0NX0.5SBHdk8rzBlGJbD6E95FNNCR-LSonYWpSHJg-yqvZYg
 
 {
     "product_name": "Ipone 14",
@@ -98,7 +98,7 @@ POST http://localhost:5000/v1/api/shop/create/product
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 x-client-id: 6561879dfb0e542382ad7dd7
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDEzMjE4MTIsImV4cCI6MTcwMTQ5NDYxMn0.9hobRSg7Sw3BJurdiq2TPSu-Pv1lROh5_2Fl2NpyclY
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE0MzgwNDUsImV4cCI6MTcwMTYxMDg0NX0.5SBHdk8rzBlGJbD6E95FNNCR-LSonYWpSHJg-yqvZYg
 
 {
     "product_name": "jean luxury",
@@ -120,7 +120,7 @@ GET http://localhost:5000/v1/api/shop/get/drafts
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 x-client-id: 6561879dfb0e542382ad7dd7
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDEzMjE4MTIsImV4cCI6MTcwMTQ5NDYxMn0.9hobRSg7Sw3BJurdiq2TPSu-Pv1lROh5_2Fl2NpyclY
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE0MzgwNDUsImV4cCI6MTcwMTYxMDg0NX0.5SBHdk8rzBlGJbD6E95FNNCR-LSonYWpSHJg-yqvZYg
 
 {
     
@@ -131,7 +131,7 @@ GET http://localhost:5000/v1/api/shop/get/publish
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 x-client-id: 6561879dfb0e542382ad7dd7
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDEzMjE4MTIsImV4cCI6MTcwMTQ5NDYxMn0.9hobRSg7Sw3BJurdiq2TPSu-Pv1lROh5_2Fl2NpyclY
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE0MzgwNDUsImV4cCI6MTcwMTYxMDg0NX0.5SBHdk8rzBlGJbD6E95FNNCR-LSonYWpSHJg-yqvZYg
 
 {
     
@@ -144,7 +144,7 @@ POST http://localhost:5000/v1/api/shop/publish/6567f08969b2f3c414f99259
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 x-client-id: 6561879dfb0e542382ad7dd7
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDEzMjE4MTIsImV4cCI6MTcwMTQ5NDYxMn0.9hobRSg7Sw3BJurdiq2TPSu-Pv1lROh5_2Fl2NpyclY
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE0MzgwNDUsImV4cCI6MTcwMTYxMDg0NX0.5SBHdk8rzBlGJbD6E95FNNCR-LSonYWpSHJg-yqvZYg
 
 {
     
@@ -156,7 +156,7 @@ POST http://localhost:5000/v1/api/shop/turnOff/publish/6567f08969b2f3c414f99259
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 x-client-id: 6561879dfb0e542382ad7dd7
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDEzMjE4MTIsImV4cCI6MTcwMTQ5NDYxMn0.9hobRSg7Sw3BJurdiq2TPSu-Pv1lROh5_2Fl2NpyclY
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE0MzgwNDUsImV4cCI6MTcwMTYxMDg0NX0.5SBHdk8rzBlGJbD6E95FNNCR-LSonYWpSHJg-yqvZYg
 
 {
     
@@ -191,4 +191,23 @@ x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8
 
 {
     
+}
+
+
+// UPDATE PRODUCT BY METHOD PATCH:
+### UPDATE products: 
+PATCH http://localhost:5000/v1/api/shop/update/product/6567f08969b2f3c414f99259  
+Content-Type: application/json 
+x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
+x-client-id: 6561879dfb0e542382ad7dd7
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE0MzgwNDUsImV4cCI6MTcwMTYxMDg0NX0.5SBHdk8rzBlGJbD6E95FNNCR-LSonYWpSHJg-yqvZYg
+
+{
+    "product_attributes": {
+        "brand": null, 
+        "size": "XL",
+        "material": "white demy"
+    },
+    "product_name": null,
+    "product_price": null
 }

@@ -27,6 +27,25 @@ const queryProduct = async ({query, limit, skip})=>{
     .exec() // is a phrase that represent: asyn await 
 }
 
+
+// update product:
+const updateProductById = async ({ 
+    productId,
+    payload,
+    model,
+    isNew = true,
+ })=> {
+   
+     return await model.findByIdAndUpdate(productId,  payload , {
+        new: isNew
+    });
+
+    // const { modifiedCount } = data.updateOne(payload);
+    // return (!modifiedCount)?"update fail please try again *-* ":" Update done your data is alter ";
+}
+
+
+
 // query search
 const searchProduct = async ({  keySearch })=>{
     const regexSearch = new RegExp(keySearch);
@@ -59,6 +78,14 @@ const findProductDetail = async ({ product_id, unSelect }) =>{
     return await product.findById( product_id ).select(UnGetSelectData(unSelect))
 }
 
+const findProductDetail_follow_field = async ({ product_id, select }) =>{
+    return await product.findById( product_id ).select(getSelectData(select));
+
+    // return await product.findOne( {
+    //     _id: product_id
+    // } )
+
+}
 
 // CRUD:
 
@@ -107,5 +134,7 @@ module.exports = {
     turnOffpublishProduct_repo,
     searchProduct,
     findAllProducts,
-    findProductDetail
+    findProductDetail,
+    updateProductById,
+    findProductDetail_follow_field
 }

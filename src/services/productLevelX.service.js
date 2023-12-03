@@ -10,8 +10,11 @@ const { findAllDrafts_repo,
         turnOffpublishProduct_repo, 
         searchProduct,
         findAllProducts,
-        findProductDetail
+        findProductDetail,
+        updateProductById,
+        findProductDetail_follow_field,
        } = require('../models/repositories/product.repo');
+const { removeUndefineObject, upadateNestedObjectParser } = require('../utils');
 
 
 class ProductFactory{
@@ -32,7 +35,7 @@ class ProductFactory{
         const productClass = ProductFactory.productRegistry[type]; // Get the value of productRegistry object through key "type"
         if(!productClass) throw BadRequestError(`invalid product type ${type}`);
         // after we got the value "productClass" -> we initialize an object to perform the next step 
-        return new productClass(payload).createProduct();
+        return new productClass(payload).createProduct(); // new Clothing({ payloads }).createProduct()
     }
 
 //CREATE OTHER METHODS WORK WITH PRODUCT MODEL IN FACTORY:
@@ -49,11 +52,15 @@ class ProductFactory{
         return await turnOffpublishProduct_repo({ product_shop, product_id });
     }
 
-    //method 3: UPDATE Put product:
-    static async UpdateProduct(){
-        
-    }
+    //Method 3: update PRODUCT PATCH:
+    static async updateProduct({productId, payload}){
 
+        const data = await findProductDetail_follow_field({product_id: productId, select: ['product_type'] });
+        const productClass = ProductFactory.productRegistry[data.product_type]; // Get the value of productRegistry object through key "type"
+        if(!productClass) throw BadRequestError(`invalid product type ${data.product_type}`);
+
+        return new productClass(payload).UpdateProduct_class(productId);
+    }
 
 
     //QUERY:
@@ -117,6 +124,13 @@ class Product{
             _id: product_id
         });  
     }
+
+    // update product:
+    async updateProduct_pc(productId, payload){
+        //productId: productId, payload: objectParams, model: product
+        return await updateProductById({ productId, payload, model: product });
+    }
+
 }
 
 class Clothing extends Product{
@@ -130,7 +144,32 @@ class Clothing extends Product{
         if(!newProduct) throw new BadRequestError("Product create fail! please try again");
         return newProduct;
     }
+
+    //UPDATE Put product:
+    async UpdateProduct_class( productId ){
+        //1: remove null or undefine fields ...
+        //2: check where will we update:
+        //3: if we dont find the value want to update -> we just alter parent product ( go alter child product first -> parent product )
+        
+      const updateNest = upadateNestedObjectParser(this)
+        const objectParams = removeUndefineObject(updateNest);
+
+
+        // const { product_attributes, ...object_2  } = objectParams;
+        // console.log("dữ liệu mới nè! " + JSON.stringify(product_attributes) + "dữ liệu mưới tiếp nè: " + JSON.stringify(object_2));
+
+
+        if(this.product_attributes){
+            // update child first:
+            await updateProductById({ productId: productId, payload: objectParams, model: clothing });
+        }
+
+        const updateProduct = await super.updateProduct_pc(productId, objectParams);
+        return updateProduct;
+    }
 }
+
+
 
 class Electronic extends Product{
     async createProduct(){
@@ -142,6 +181,21 @@ class Electronic extends Product{
         const newProduct = await super.createProduct(newElectronic._id);
         if(!newProduct) throw new BadRequestError("Product create fail! please try again");
         return newProduct;
+    }
+
+    async UpdateProduct_class( productId ){
+        //1: remove null or undefine fields ...
+        //2: check where will we update:
+        //3: if we dont find the value want to update -> we just alter parent product ( go alter child product first -> parent product )
+
+         
+        if(this.product_attributes){
+            // update child first:
+           return await updateProductById({ productId: productId, payload: this.product_attributes, model: electronic });
+        }
+
+        const updateProduct = await super.updateProduct_pc(productId, this);
+        return updateProduct;
     }
 }
 
@@ -155,6 +209,23 @@ class Funiture extends Product{
         const newProduct = await super.createProduct(newFuniture._id);
         if(!newProduct) throw new BadRequestError("Product create fail! please try again");
         return newProduct;
+    }
+
+    async UpdateProduct_class( productId ){
+        //1: remove null or undefine fields ... ex: product_attributes { field_1: undefine, field_2: data ... }
+        //2: check where will we update:
+        //3: if we dont find the value want to update 
+        //-> just alter parent product ( go alter child product first -> parent product )
+
+        
+
+        if(this.product_attributes){
+            // update child first:
+           return await updateProductById({ productId: productId, payload: this.product_attributes, model: funiture });
+        }
+
+        const updateProduct = await super.updateProduct_pc(productId, this);
+        return updateProduct;
     }
 }
 

@@ -245,7 +245,6 @@ tức là từ cao xuống thấp. Nếu bạn muốn sắp xếp theo thứ t�
 bạn có thể dùng giá trị 1 hoặc bỏ qua giá trị này
 
 
-
 EX:
 Một hàm chuyển array -> thành object key value:
 
@@ -268,6 +267,54 @@ const getSelectData = (select = []) => {
 đầu tiên của mỗi mảng con sẽ làm khóa, và phần tử thứ hai sẽ làm giá trị.
  Ví dụ, nếu mảng con là [['a', 1], ['b', 1], ['c', 1]], 
  thì kết quả của hàm fromEntries() sẽ là {a: 1, b: 1, c: 1}.
+
+BÀI 18: Update POST, PUT, PATCH trong Product Service API
+_ có 2 cách sử dụng PUT 
+tạo một tài nguyên'tạo 1 sp mới' -> nghĩa là đưa vào 1 object nếu ko tìm thấy thì tạo 1 sp mới nếu tìm thấy sp đó thì nó sẽ update.
+ví dụ: ta phải update dữ liệu bằng method PUT -> ta vẫn phải truyền đủ fields giống như POST nếu thiều một trường là nó sai
+       Nhưng ta sẽ sử dụng PATCH để update chỉ chuyền vào 1 trường or 2 trường ... duy nhất để nó update lại dữ liệu mà ko phải truyền đủ dữ liệu giống như PUT
+
+PATCH -> update 1 field ( chuyền một field )
+PUT -> update 1 field ( chuyển đủ fields giống như POST )
+
+Object.keys( object ) -> chuyển đổi thành 1 chuỗi để lặp qua dữ liệu ...
+ex: 
+const person = {
+    name: 'Alice',
+    age: undefined,
+    gender: 'female'
+} 
+const keys = Object.key(person); // lấy ra các key của mảng person
+keys.foreach( value => person[value] ) // lấy ra name - alice
+
+
+giải thích về đoạn code nestedObject:
+// thêm  || {}  trong Object.keys để ko bị lỗi
+const updateNestedObjectParse = variableObj => {
+  const final = {};
+
+  Object.keys(variableObj || {}).forEach(key => {
+    if (typeof variableObj[key] === 'object' && !Array.isArray(variableObj[key])) {
+      const response = updateNestedObjectParse(variable[key]);
+
+      Object.keys(response || {}).forEach(a => {
+        final[`${key}.${a}`] = response[a];
+      });
+    } else {
+      final[key] = variableObj[key];
+    }
+  });
+  return final;
+}
+
+đoạn code trên sẽ render ra dữ liệu này:
+để chuyển đổi đoạn object lồng nhau thành cặp key.key: value:
+product_attributes.size":"XL","product_attributes.material":"white demy"
+
+mục đích:
+để chuyển đổi một đối tượng có thể chứa các đối tượng lồng nhau thành một đối tượng phẳng (flat object), 
+tức là chỉ có các thuộc tính đơn
+
 
 
 

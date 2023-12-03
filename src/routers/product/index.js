@@ -21,5 +21,8 @@ router.post('/shop/turnOff/publish/:id', asyncHandle2(ProductController.turnOffp
 router.get('/shop/get/drafts', asyncHandle2(ProductController.getAllDraftsShopId));
 router.get('/shop/get/publish', asyncHandle2(ProductController.getAllPublishShopId));
 
+// update product:
+router.patch('/shop/update/product/:productId', asyncHandle2(ProductController.updateProduct));
+
 
 module.exports = router;

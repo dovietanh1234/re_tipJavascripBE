@@ -80,6 +80,14 @@ turnOffpublishProduct = async (req, res, next)=>{
         }).send(res);
     }
 
+    //UPDATE PRODUCT PATCH:
+    updateProduct = async( req, res, next ) => {
+        new SuccessResponse({
+            message: 'UPDATE PRODUCT SUCCESS',
+            metadata: await ProductService_V2.updateProduct( {productId: req.params.productId, payload: req.body} ),
+        }).send(res);
+    }
+
 
 
 }
