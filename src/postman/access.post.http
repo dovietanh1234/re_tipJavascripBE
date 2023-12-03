@@ -101,15 +101,15 @@ x-client-id: 6561879dfb0e542382ad7dd7
 authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE0MzgwNDUsImV4cCI6MTcwMTYxMDg0NX0.5SBHdk8rzBlGJbD6E95FNNCR-LSonYWpSHJg-yqvZYg
 
 {
-    "product_name": "jean luxury",
+    "product_name": "baby jean ",
     "product_thumb": "https://assemblylabel.com/cdn/shop/products/c01a596fd3cb4413bad785724b510096_600x.jpg?v=1693190679",
-    "product_description": "so slight and perfect ",
-    "product_price": 250,
-    "product_quantity": 600,
+    "product_description": "for your babe",
+    "product_price": 15,
+    "product_quantity": 500,
     "product_type": "Clothing",
     "product_attributes": {
-        "brand": "material",
-        "size": "L",
+        "brand": "normal",
+        "size": "X",
         "material": "demin"
     }
 }

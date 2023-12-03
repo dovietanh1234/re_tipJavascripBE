@@ -315,6 +315,23 @@ mục đích:
 để chuyển đổi một đối tượng có thể chứa các đối tượng lồng nhau thành một đối tượng phẳng (flat object), 
 tức là chỉ có các thuộc tính đơn
 
+BÀI 19: TẠO inventories Model vs Service:
+Model schema -> inventories
+ product_stock:
+ {
+   products Collection( lưu trữ những thông tin về sản phẩm mà danh nghiệp bán trên TMDT ... name, size, price ... ) 
+   -> dùng để duyệt và tìm kiếm những sản phẩm 
+   có sẵn để mua và hiển thị thông tin các sản phẩm đó trên các ứng dụng của chúng ta hoặc trên website.
+
+   inventories Collection ( hàng tồn kho lưu trữ thông tin về mức tồn kho của từng sản phẩm số lượng đơn vị hiện có trong kho, vị trí các đơn vị đó, các thông tin liên quan )
+   inventories Collection -> đc sử dụng để theo dõi quản ly hàng tồn kho thực tế của một doanh nghiệp thương mai điện tử Nhằm đảm bảo rằng 
+   các sản phẩm sẽ chỉ bán được khi chúng có sẵn trong kho mà thôi!.
+ }  
+
+ -> mỗi bộ collection sẽ được tối ưu hoá cho cái mục đích cụ thể của nó -> nó cho phép linh hoạt hơn trong các thiết kế ứng dụng
+ ví dụ cập nhật một chi tiết sản phẩm ( nó ko ảnh hưởng đến collection inventories )
+
+
 
 
 
@@ -347,3 +364,4 @@ chúng ta phải ép kiểu về objectId -> const {Types} = require('mongoose')
 * 1 collection mongose DB -> 1 document giới hạn hiện tại là 16mb -> vượt quá 16mb (ko cho lưu nữa)
 mongose DB cho phép chúng ta có 100 objects lồng nhau nested object 100 
 mongose DB được thiết kế xử lý khối lượng lớn và Có thể mở rộng theo chiều ngang hay chiều dọc ... để xử lý dữ liệu nhiều hơn
+* chúng ta dùng .then() bất đồng bộ cho nó giảm thời gian tải nhưng chúng ta sử dụng await thì chúng ta sữ hứng cái kết quả để làm việc sử dụng "await"

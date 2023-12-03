@@ -15,6 +15,7 @@ const { findAllDrafts_repo,
         findProductDetail_follow_field,
        } = require('../models/repositories/product.repo');
 const { removeUndefineObject, upadateNestedObjectParser } = require('../utils');
+const { insertInventory } = require('../models/repositories/inventory.repo');
 
 
 class ProductFactory{
@@ -119,10 +120,21 @@ class Product{
     }
 
     async createProduct(product_id){
-        return await product.create({
+        const newProduct =  await product.create({
             ...this, 
             _id: product_id
         });  
+
+        if(newProduct){
+            insertInventory({
+                productId: product_id, 
+                shopId: this.product_shop, 
+                stock: this.product_quantity
+            })
+            return newProduct;
+        }
+        return false;
+
     }
 
     // update product:
@@ -141,6 +153,7 @@ class Clothing extends Product{
         }); 
         if(!newClothing) throw new BadRequestError("clothing create fail! please try again");
         const newProduct = await super.createProduct(newClothing._id);
+        
         if(!newProduct) throw new BadRequestError("Product create fail! please try again");
         return newProduct;
     }
@@ -173,58 +186,50 @@ class Clothing extends Product{
 
 class Electronic extends Product{
     async createProduct(){
-        const newElectronic = await electronic.create({
+        const newClothing = await electronic.create({
             ...this.product_attributes,
             product_shop: this.product_shop
         }); 
-        if(!newElectronic) throw new BadRequestError("electronic create fail! please try again");
-        const newProduct = await super.createProduct(newElectronic._id);
+        if(!newClothing) throw new BadRequestError("clothing create fail! please try again");
+        const newProduct = await super.createProduct(newClothing._id);
+        
         if(!newProduct) throw new BadRequestError("Product create fail! please try again");
         return newProduct;
     }
 
     async UpdateProduct_class( productId ){
-        //1: remove null or undefine fields ...
-        //2: check where will we update:
-        //3: if we dont find the value want to update -> we just alter parent product ( go alter child product first -> parent product )
-
-         
+      const updateNest = upadateNestedObjectParser(this)
+        const objectParams = removeUndefineObject(updateNest);
         if(this.product_attributes){
-            // update child first:
-           return await updateProductById({ productId: productId, payload: this.product_attributes, model: electronic });
+            await updateProductById({ productId: productId, payload: objectParams, model: electronic });
         }
-
-        const updateProduct = await super.updateProduct_pc(productId, this);
+        const updateProduct = await super.updateProduct_pc(productId, objectParams);
         return updateProduct;
     }
 }
 
 class Funiture extends Product{
     async createProduct(){
-        const newFuniture = await funiture.create({
+        const newClothing = await funiture.create({
             ...this.product_attributes,
             product_shop: this.product_shop
         }); 
-        if(!newFuniture) throw new BadRequestError("funiture create fail! please try again");
-        const newProduct = await super.createProduct(newFuniture._id);
+        if(!newClothing) throw new BadRequestError("clothing create fail! please try again");
+        const newProduct = await super.createProduct(newClothing._id);
+        
         if(!newProduct) throw new BadRequestError("Product create fail! please try again");
         return newProduct;
     }
 
     async UpdateProduct_class( productId ){
-        //1: remove null or undefine fields ... ex: product_attributes { field_1: undefine, field_2: data ... }
-        //2: check where will we update:
-        //3: if we dont find the value want to update 
-        //-> just alter parent product ( go alter child product first -> parent product )
-
-        
-
+      const updateNest = upadateNestedObjectParser(this)
+        const objectParams = removeUndefineObject(updateNest);
         if(this.product_attributes){
             // update child first:
-           return await updateProductById({ productId: productId, payload: this.product_attributes, model: funiture });
+            await updateProductById({ productId: productId, payload: objectParams, model: funiture });
         }
 
-        const updateProduct = await super.updateProduct_pc(productId, this);
+        const updateProduct = await super.updateProduct_pc(productId, objectParams);
         return updateProduct;
     }
 }
