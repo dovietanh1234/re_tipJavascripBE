@@ -331,9 +331,11 @@ Model schema -> inventories
  -> mỗi bộ collection sẽ được tối ưu hoá cho cái mục đích cụ thể của nó -> nó cho phép linh hoạt hơn trong các thiết kế ứng dụng
  ví dụ cập nhật một chi tiết sản phẩm ( nó ko ảnh hưởng đến collection inventories )
 
+trường: inventory_reservation để khi có người đặt hàng nó sẽ lưu cái số lượng đã đặt hàng để trong cái mục reservation và trừ đi 
+sô lượng trong kho Nhưng nếu quá 30' thì số lượng trong reservation sẽ được update lại cho mục inventory_stock
 
-
-
+Section 20: Discount Model in eCommerce
+_ tạo Discount Model cho dự án!
 
 
 
