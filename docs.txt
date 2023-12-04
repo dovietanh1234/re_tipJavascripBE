@@ -340,6 +340,48 @@ _ tạo Discount Model cho dự án!
 
 
 
+section 21: 
+
+giải thích đoạn code này:
+  if(discount_applyTo === "specify"){
+            // get specific products follow id:
+            products = await findAllProducts({
+                filter: {
+                    _id: {$in: discount_productId}, // new syntax "$in" get data "discount_productId" from foundDiscount object
+                    isPublished: true
+                },
+                limit: +limit,
+                page: +page,
+                sort: 'ctime',
+                select: [ 'product_name', 'product_price', 'product_thumb' ] 
+            });
+            
+        }
+
+- Toán tử $in trong MongoDB là một toán tử so sánh, cho phép bạn tìm kiếm các document 
+có giá trị của một trường nằm trong một mảng được chỉ định. Ví dụ, nếu bạn muốn tìm 
+kiếm các document có trường _id bằng 1, 2 hoặc 3, bạn có thể sử dụng toán tử $in như sau:
+để tìm nhiều mục dữ liệu: trường cần tìm: $in: [ các giá trị muốn tìm ]
+
+// Tìm kiếm các document có _id bằng 1, 2 hoặc 3
+db.collection.find({ _id: { $in: [1, 2, 3] } });
+
+---new dữ liệu mới:
+- Toán tử + trong JavaScript là một toán tử số học, cho phép bạn cộng hai số hoặc nối hai chuỗi. 
+Ngoài ra, bạn cũng có thể sử dụng toán tử + để ép kiểu một giá trị thành số. Ví dụ, nếu bạn muốn
+ép kiểu một biến limit thành số, bạn có thể sử dụng toán tử + như sau:
+=> ép kiểu chuyền về kiểu string ép kiểu về kiểu number
+
+// Tạo một biến limit có giá trị là một chuỗi "10"
+const limit = "10";
+
+// Ép kiểu biến limit thành số bằng toán tử +
+const numLimit = +limit;
+
+// Kiểm tra kiểu của biến numLimit
+console.log(typeof numLimit); // number
+
+
 
 
 * nguyên tắc của lập trình ko được nhúng một số hay một chuỗi nào vào code!

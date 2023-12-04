@@ -186,12 +186,12 @@ class Clothing extends Product{
 
 class Electronic extends Product{
     async createProduct(){
-        const newClothing = await electronic.create({
+        const newElectronic = await electronic.create({
             ...this.product_attributes,
             product_shop: this.product_shop
         }); 
-        if(!newClothing) throw new BadRequestError("clothing create fail! please try again");
-        const newProduct = await super.createProduct(newClothing._id);
+        if(!newElectronic) throw new BadRequestError("electronic create fail! please try again");
+        const newProduct = await super.createProduct(newElectronic._id);
         
         if(!newProduct) throw new BadRequestError("Product create fail! please try again");
         return newProduct;
@@ -210,12 +210,12 @@ class Electronic extends Product{
 
 class Funiture extends Product{
     async createProduct(){
-        const newClothing = await funiture.create({
+        const newFuniture = await funiture.create({
             ...this.product_attributes,
             product_shop: this.product_shop
         }); 
-        if(!newClothing) throw new BadRequestError("clothing create fail! please try again");
-        const newProduct = await super.createProduct(newClothing._id);
+        if(!newFuniture) throw new BadRequestError("funrniture create fail! please try again");
+        const newProduct = await super.createProduct(newFuniture._id);
         
         if(!newProduct) throw new BadRequestError("Product create fail! please try again");
         return newProduct;

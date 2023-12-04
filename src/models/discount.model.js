@@ -19,24 +19,11 @@ var DiscountSchema = new Schema({
     discount_userUsed: { type: Array, default: [] }, // who is the person used this discount?
     discount_maxNumberUsedPerUser: { type: Number, required: true },// Maximum number used per user ... 
     discount_minOrderValue: { type: Number, required: true }, // min order value
+    discount_maxValue: { type: Number, required: true }, // max order value
     discount_shopId: {type: Schema.Types.ObjectId, ref: 'Shop'}, // shop'id discount
     discount_isActive: { type: Boolean, default: true }, // this discount is active or not
     discount_applyTo: { type: String, required: true, enum: ['all', 'specify'] }, // this discount apply for all products in shop or secify product in shop?
     discount_productId: { type: Array, default: [] }, // if this discount apply for specify product in shop ... transfer product's id in this field
-    
-
-
-
-
-
-
-
-    /* inventory_productId: { type: Schema.Types.ObjectId, ref: 'Product' }, // reference to product collection
-    inventory_location: {type: String, default: 'unknow' },
-    inventory_stock: { type: Number, required: true }, // inventory quantity
-    inventory_shopId: { type: Schema.Types.ObjectId, ref: 'Shop' },
-    inventory_reservations: { type: Array, default: [] },*/
-    
 }, {
     timestamps: true,
     collection: COLLECTION_NAME
@@ -44,6 +31,6 @@ var DiscountSchema = new Schema({
 
 //Export the model
 module.exports = {
-    inventory: model(DOCUMENT_NAME, DiscountSchema),
+    discount: model(DOCUMENT_NAME, DiscountSchema),
 
 };
