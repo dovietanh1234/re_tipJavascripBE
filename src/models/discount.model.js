@@ -9,7 +9,7 @@ const COLLECTION_NAME = 'Discounts'
 var DiscountSchema = new Schema({
     discount_name: { type: String, required: true },
     discount_description: { type: String, required: true },
-    discount_type: { type: String, default: "fixed_amount" }, // percentage
+    discount_type: { type: String, default: "fixed_amount" }, // fixed_amount (10.000vnd) OR percentage (2% ...)
     discount_value: { type: Number, required: true }, // ex: fixed_amount = 10k vnd -> if another discount price -> for shop write in
     discount_code: {type: String, required: true}, 
     discount_startDate: {type: Date, required: true},

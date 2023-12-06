@@ -1,6 +1,7 @@
 'use strict'
 
 const {getSelectData, UnGetSelectData} = require('../../utils/index');
+const {convertObjectIdMongo} = require('../../utils/index')
 
 const findAllDiscountCodesUnSelect = async({
     limit = 50, page = 1, sort = 'ctime', filter, unSelect, model
@@ -34,7 +35,17 @@ const findAllDiscountCodesSelect = async({
     return document;    
 }
 
+const checkDiscountExist = async ({model, code, shopId}) => {
+    return await model.findOne({
+        discount_code: code,
+        discount_shopId: convertObjectIdMongo(shopId) 
+        // because shopId we receive in the client's input so we need to convert ObjectId ( in model we declare this type: Schema.Types.ObjectId ... )
+    }).lean();
+}
+
+
 module.exports = {
     findAllDiscountCodesUnSelect,
-    findAllDiscountCodesSelect
+    findAllDiscountCodesSelect,
+    checkDiscountExist
 }

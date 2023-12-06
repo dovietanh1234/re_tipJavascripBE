@@ -381,6 +381,29 @@ const numLimit = +limit;
 // Kiểm tra kiểu của biến numLimit
 console.log(typeof numLimit); // number
 
+Section 22: Discount Service in eCommerce Part 2 - FULL
+
+ discount.findByIdAndUpdate(foundDiscount._id, {
+            $pull: {
+                discount_userUsed: userId
+            },
+            $inc: {
+            discount_quantityUsed: 1, // whene user undoes -> we set  "how many discount will be release" = 1
+            discount_numberOfTimeUserUsed: -1, // and set "number of times user used this discount" = -1 like: used return   
+            }})
+
+toán tử:
+$pull cho phép bạn loại bỏ một hoặc nhiều giá trị khỏi một mảng.
+-> Trong trường hợp của bạn, bạn muốn loại bỏ giá trị của biến userId khỏi mảng discount_userUsed
+
+-> Toán tử $inc cho phép bạn tăng hoặc giảm giá trị của một trường số:
+bạn muốn tăng giá trị của trường "discount_quantityUsed" lên 1 (input đầu vào sẽ là số lượng bao nhiêu cái sẽ đc release khi xoá đi ta phải trả về số lượng ban đầu) , 
+và giảm giá trị của trường "discount_numberOfTimeUserUsed" xuống 1 (số lần sử dụng sẽ về lại bằng 0).
+
+có nghĩa là bạn muốn tăng số lượng mã giảm giá còn lại lên 1,
+và giảm số lần người dùng sử dụng mã giảm giá xuống 1.
+Bạn có thể hiểu đây là một hành động hoàn tác (undo)
+khi người dùng không muốn sử dụng mã giảm giá nữa.
 
 
 

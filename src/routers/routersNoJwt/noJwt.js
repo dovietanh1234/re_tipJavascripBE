@@ -3,6 +3,7 @@
 const express = require('express');
 const ProductController = require('../../controllers/product.controller');
 const accessController = require('../../controllers/access.controller');
+const discountController = require('../../controllers/discount.controller');
 const { asyncHandle2 } = require('../../helpers/asyncHandle2');
 const router = express.Router();
 
@@ -13,5 +14,9 @@ router.get('/shop/getall/product', asyncHandle2(ProductController.findAllProduct
 // sign up & sign in
 router.post('/shop/signup', asyncHandle2(accessController.signUp));
 router.post('/shop/login', asyncHandle2(accessController.login));
+// discount:
+router.post('/shop/applyDiscountCode', asyncHandle2(discountController.applyDiscountCode));
+router.get('/shop/getAllDiscountByProductId', asyncHandle2(discountController.getAllDiscountCodeByProductId));
+
 
 module.exports = router;

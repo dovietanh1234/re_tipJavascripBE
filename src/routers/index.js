@@ -3,19 +3,20 @@
 const express = require('express');
 const { apiKey, checkPermissionForApiKey } = require('../auth/checkAuthen');
 const router = express.Router();
-const ProductController = require('../controllers/product.controller')
-
+//const ProductController = require('../controllers/product.controller')
+//const discountController = require('../controllers/discount.controller');
 //check apiKey:
 router.use(apiKey);
 //check permission(this key has permission to access our system BE):
 router.use(checkPermissionForApiKey); // put the key '0000' in the parameter
 
-
+//router.post('/shop/applyDiscountCode', discountController.applyDiscountCode);
 // import routers:
 router.use('/v1/api', require('./routersNoJwt/noJwt'));
 //router.get('/shop/search/:keySearch', ProductController.searchProduct);
 router.use('/v1/api', require('./access/index'));
 router.use('/v1/api', require('./product/index'));
+router.use('/v1/api', require('./discount/index'));
 
 
 

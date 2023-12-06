@@ -64,7 +64,7 @@ POST http://localhost:5000/v1/api/shop/logout
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 x-client-id: 6561879dfb0e542382ad7dd7
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE0MzgwNDUsImV4cCI6MTcwMTYxMDg0NX0.5SBHdk8rzBlGJbD6E95FNNCR-LSonYWpSHJg-yqvZYg
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE4MzI4MTYsImV4cCI6MTcwMjAwNTYxNn0.NMJtKF43fmFzY4ym8k-Q0iUSKGZ2GUp96A1HLMnadak
 
 {
 }
@@ -75,7 +75,7 @@ POST http://localhost:5000/v1/api/shop/create/product
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 x-client-id: 6561879dfb0e542382ad7dd7
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE0MzgwNDUsImV4cCI6MTcwMTYxMDg0NX0.5SBHdk8rzBlGJbD6E95FNNCR-LSonYWpSHJg-yqvZYg
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE4MzI4MTYsImV4cCI6MTcwMjAwNTYxNn0.NMJtKF43fmFzY4ym8k-Q0iUSKGZ2GUp96A1HLMnadak
 
 {
     "product_name": "Ipone 14",
@@ -98,7 +98,7 @@ POST http://localhost:5000/v1/api/shop/create/product
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 x-client-id: 6561879dfb0e542382ad7dd7
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE0MzgwNDUsImV4cCI6MTcwMTYxMDg0NX0.5SBHdk8rzBlGJbD6E95FNNCR-LSonYWpSHJg-yqvZYg
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE4MzI4MTYsImV4cCI6MTcwMjAwNTYxNn0.NMJtKF43fmFzY4ym8k-Q0iUSKGZ2GUp96A1HLMnadak
 
 {
     "product_name": "baby jean ",
@@ -120,7 +120,7 @@ GET http://localhost:5000/v1/api/shop/get/drafts
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 x-client-id: 6561879dfb0e542382ad7dd7
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE0MzgwNDUsImV4cCI6MTcwMTYxMDg0NX0.5SBHdk8rzBlGJbD6E95FNNCR-LSonYWpSHJg-yqvZYg
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE4MzI4MTYsImV4cCI6MTcwMjAwNTYxNn0.NMJtKF43fmFzY4ym8k-Q0iUSKGZ2GUp96A1HLMnadak
 
 {
     
@@ -131,7 +131,7 @@ GET http://localhost:5000/v1/api/shop/get/publish
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 x-client-id: 6561879dfb0e542382ad7dd7
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE0MzgwNDUsImV4cCI6MTcwMTYxMDg0NX0.5SBHdk8rzBlGJbD6E95FNNCR-LSonYWpSHJg-yqvZYg
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE4MzI4MTYsImV4cCI6MTcwMjAwNTYxNn0.NMJtKF43fmFzY4ym8k-Q0iUSKGZ2GUp96A1HLMnadak
 
 {
     
@@ -144,7 +144,7 @@ POST http://localhost:5000/v1/api/shop/publish/6567f08969b2f3c414f99259
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 x-client-id: 6561879dfb0e542382ad7dd7
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE0MzgwNDUsImV4cCI6MTcwMTYxMDg0NX0.5SBHdk8rzBlGJbD6E95FNNCR-LSonYWpSHJg-yqvZYg
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE4MzI4MTYsImV4cCI6MTcwMjAwNTYxNn0.NMJtKF43fmFzY4ym8k-Q0iUSKGZ2GUp96A1HLMnadak
 
 {
     
@@ -156,7 +156,7 @@ POST http://localhost:5000/v1/api/shop/turnOff/publish/6567f08969b2f3c414f99259
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 x-client-id: 6561879dfb0e542382ad7dd7
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE0MzgwNDUsImV4cCI6MTcwMTYxMDg0NX0.5SBHdk8rzBlGJbD6E95FNNCR-LSonYWpSHJg-yqvZYg
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE4MzI4MTYsImV4cCI6MTcwMjAwNTYxNn0.NMJtKF43fmFzY4ym8k-Q0iUSKGZ2GUp96A1HLMnadak
 
 {
     
@@ -200,7 +200,7 @@ PATCH http://localhost:5000/v1/api/shop/update/product/6567f08969b2f3c414f99259
 Content-Type: application/json 
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 x-client-id: 6561879dfb0e542382ad7dd7
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE0MzgwNDUsImV4cCI6MTcwMTYxMDg0NX0.5SBHdk8rzBlGJbD6E95FNNCR-LSonYWpSHJg-yqvZYg
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE4MzI4MTYsImV4cCI6MTcwMjAwNTYxNn0.NMJtKF43fmFzY4ym8k-Q0iUSKGZ2GUp96A1HLMnadak
 
 {
     "product_attributes": {
@@ -211,3 +211,88 @@ authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZi
     "product_name": null,
     "product_price": null
 }
+
+
+// DISCOUNT:
+
+
+
+### CREATE DISCOUNT: 
+POST http://localhost:5000/v1/api/shop/createDiscount
+Content-Type: application/json
+x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
+x-client-id: 6561879dfb0e542382ad7dd7
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE4MzI4MTYsImV4cCI6MTcwMjAwNTYxNn0.NMJtKF43fmFzY4ym8k-Q0iUSKGZ2GUp96A1HLMnadak
+
+{
+    "name":"discount for international",
+    "code": "SHOP-INTERNATIONAL",
+    "startDate": "2023-12-06 11:06:00",
+    "endDate": "2023-12-10 12:00:00",
+    "isActive": true,
+    "minOrderValue": 10,
+    "aplliesTo": "specify",
+    "productIds": ["6567f08969b2f3c414f99259", "656c4fe22899f8047e373463"],
+    "description": "discount for foreign",
+    "type": "percentage", 
+    "value": "5",
+    "maxValue": 500,
+    "maxUses": 100,
+    "usesCount": 0, 
+    "maxNumberUsedPerUser": 1,
+    "usersUsed": []
+}
+
+### get All discount Code Of ShopId: 
+POST http://localhost:5000/v1/api/shop/getAllDiscountByShopId
+Content-Type: application/json
+x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
+x-client-id: 6561879dfb0e542382ad7dd7
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE4MzI4MTYsImV4cCI6MTcwMjAwNTYxNn0.NMJtKF43fmFzY4ym8k-Q0iUSKGZ2GUp96A1HLMnadak
+
+{
+    "limit": "10", 
+    "page": "1"
+}
+
+
+### apply DiscountCode in product
+POST http://localhost:5000/v1/api/shop/applyDiscountCode
+Content-Type: application/json
+x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
+
+{
+    "codeId": "SHOP-INTERNATIONAL", 
+    "userId": "0979278962ABC", 
+    "shopId": "6561879dfb0e542382ad7dd7",
+    "products": [{
+        "productId": "6567f08969b2f3c414f99259",
+        "shopId": "6561879dfb0e542382ad7dd7",
+        "quantity": 2,
+        "name": "update version 2",
+        "price": 300
+    },
+    {
+        "productId": "656c4fe22899f8047e373463",
+        "shopId": "6561879dfb0e542382ad7dd7",
+        "quantity": 3,
+        "name": "flower shirt ",
+        "price": 20
+    }]
+}
+
+
+### get All Discount By ProductId
+GET http://localhost:5000/v1/api/shop/getAllDiscountByProductId
+Content-Type: application/json
+x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
+
+{
+    "code": "SHOP-1122", 
+    "shopId": "6561879dfb0e542382ad7dd7", 
+    "userId": "",
+    "limit": "10",
+    "page": "1"
+}
+
+
