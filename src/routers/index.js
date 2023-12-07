@@ -12,7 +12,9 @@ router.use(checkPermissionForApiKey); // put the key '0000' in the parameter
 
 //router.post('/shop/applyDiscountCode', discountController.applyDiscountCode);
 // import routers:
+
 router.use('/v1/api', require('./routersNoJwt/noJwt'));
+router.use('/v1/api', require('./cart/index'));
 //router.get('/shop/search/:keySearch', ProductController.searchProduct);
 router.use('/v1/api', require('./access/index'));
 router.use('/v1/api', require('./product/index'));

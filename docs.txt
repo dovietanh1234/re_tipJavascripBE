@@ -381,7 +381,8 @@ const numLimit = +limit;
 // Kiểm tra kiểu của biến numLimit
 console.log(typeof numLimit); // number
 
-Section 22: Discount Service in eCommerce Part 2 - FULL
+Section 22: 
+Discount Service in eCommerce Part 2 - FULL
 
  discount.findByIdAndUpdate(foundDiscount._id, {
             $pull: {
@@ -404,6 +405,73 @@ có nghĩa là bạn muốn tăng số lượng mã giảm giá còn lại lên 
 và giảm số lần người dùng sử dụng mã giảm giá xuống 1.
 Bạn có thể hiểu đây là một hành động hoàn tác (undo)
 khi người dùng không muốn sử dụng mã giảm giá nữa.
+
+Section 23: 
+Cart Service in eCommerce Part 1 | Cart Model vs add product to cart [User]
+
+_ add product to cart [User]
+_ reduce a product to cart [User]
+_ increase a product in cart [User]
+_ delete all products in cart [User]
+_ get list cart [User]
+_ delete cart item [User]
+
+
+ const query = { 
+            cartUserId: userId,  
+            'cartProducts.productId': productId,
+            cartState: 'active'
+        }, updateSet = {
+            $inc: {
+                'cartProducts.$.productId': quantity
+            }
+        }
+
+
+nó sẽ tìm kiếm sản phẩm này "'cartProducts.productId': productId," có trong một cái array hay ko?
+nếu mà có thì "$" này sẽ đại diện cho update chính phần tử đó:
+ "cartProducts.$.productId" -> update chính ở phần tử này.
+
+ Section 24: Cart Service Api | Update, reduce, increase product [User] Part 2
+
+/*
+        shop_order_id: [
+                {
+                    shopId,
+                    itemProducts: [
+                        {
+                            quantity,
+                            price,
+                            shopId,
+                            oldQuantity,
+                            productId
+                        },
+                        {
+                            quantity,
+                            price,
+                            shopId,
+                            oldQuantity,
+                            productId
+                        }
+                    ],
+                    version  // khoá lạc quan, khoá bi quan, khoá phân tán 
+
+                }
+        ]
+    */
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

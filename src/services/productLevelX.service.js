@@ -85,7 +85,7 @@ class ProductFactory{
 
     //Method 4: select * from products:
     static async findAllProducts({ limit = 50, sort = 'ctime', page = 1, filter = {isPublished: true} }){ //sorting "ctime" sort flow newest time
-        return await findAllProducts({limit, sort, page, filter, select: [ 'product_name', 'product_price', 'product_thumb' ]})
+        return await findAllProducts({limit, sort, page, filter, select: [ 'product_name', 'product_price', 'product_thumb', 'product_shop' ]})
     }
 
     //Method 5: select detail product:

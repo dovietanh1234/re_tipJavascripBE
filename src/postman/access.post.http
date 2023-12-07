@@ -174,7 +174,7 @@ x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8
 
 //find all products
 ### find all products:
-GET http://localhost:5000/v1/api/shop/getall/product
+GET http://localhost:5000/v1/api/shop/getall/product 
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 
@@ -296,3 +296,67 @@ x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8
 }
 
 
+// CART:
+
+
+### get All cart By userId
+GET http://localhost:5000/v1/api/shop/cart/getall
+Content-Type: application/json
+x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
+
+{
+    "userId": "USER111"
+}
+
+
+### create CART
+POST http://localhost:5000/v1/api/shop/cart/create
+Content-Type: application/json
+x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
+
+{
+   "userId": "USER111",  
+   "product": {
+            "productId": "656c51301929aa120ffdd2cb",
+            "shopId": "6561879dfb0e542382ad7dd7",
+            "quantity": 4,
+            "name": "cat shirt ",     
+            "price": 15 
+   }
+}
+
+
+
+### update CART
+POST http://localhost:5000/v1/api/shop/cart/update
+Content-Type: application/json
+x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
+
+{
+        "userId": "USER111", 
+        "shop_order_id": [
+                        {
+                        "shopId": "6561879dfb0e542382ad7dd7",
+                        "itemProducts": [
+                                    {
+                                    "quantity": 10,
+                                    "price": 15,
+                                    "shopId": "6561879dfb0e542382ad7dd7",
+                                    "oldQuantity": 1,
+                                    "productId": "656c51dd55769ac88c8e273a"
+                                    }
+                        ],
+                        "version": 1
+                        }
+            ] 
+}
+
+### delete
+POST http://localhost:5000/v1/api/shop/cart/delete
+Content-Type: application/json
+x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
+
+{
+   "userId": "", 
+   "productId": "656c51dd55769ac88c8e273a"
+}
