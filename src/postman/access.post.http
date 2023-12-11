@@ -64,7 +64,7 @@ POST http://localhost:5000/v1/api/shop/logout
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 x-client-id: 6561879dfb0e542382ad7dd7
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE4MzI4MTYsImV4cCI6MTcwMjAwNTYxNn0.NMJtKF43fmFzY4ym8k-Q0iUSKGZ2GUp96A1HLMnadak
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDIyNTYxNTksImV4cCI6MTcwMjQyODk1OX0.CY0qFvO3ImYeD_ZRIlQt8Mo01mkKZdpj2m30yJnSW6I
 
 {
 }
@@ -75,7 +75,7 @@ POST http://localhost:5000/v1/api/shop/create/product
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 x-client-id: 6561879dfb0e542382ad7dd7
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE4MzI4MTYsImV4cCI6MTcwMjAwNTYxNn0.NMJtKF43fmFzY4ym8k-Q0iUSKGZ2GUp96A1HLMnadak
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDIyNTYxNTksImV4cCI6MTcwMjQyODk1OX0.CY0qFvO3ImYeD_ZRIlQt8Mo01mkKZdpj2m30yJnSW6I
 
 {
     "product_name": "Ipone 14",
@@ -98,7 +98,7 @@ POST http://localhost:5000/v1/api/shop/create/product
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 x-client-id: 6561879dfb0e542382ad7dd7
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE4MzI4MTYsImV4cCI6MTcwMjAwNTYxNn0.NMJtKF43fmFzY4ym8k-Q0iUSKGZ2GUp96A1HLMnadak
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDIyNTYxNTksImV4cCI6MTcwMjQyODk1OX0.CY0qFvO3ImYeD_ZRIlQt8Mo01mkKZdpj2m30yJnSW6I
 
 {
     "product_name": "baby jean ",
@@ -120,7 +120,7 @@ GET http://localhost:5000/v1/api/shop/get/drafts
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 x-client-id: 6561879dfb0e542382ad7dd7
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE4MzI4MTYsImV4cCI6MTcwMjAwNTYxNn0.NMJtKF43fmFzY4ym8k-Q0iUSKGZ2GUp96A1HLMnadak
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDIyNTYxNTksImV4cCI6MTcwMjQyODk1OX0.CY0qFvO3ImYeD_ZRIlQt8Mo01mkKZdpj2m30yJnSW6I
 
 {
     
@@ -131,7 +131,7 @@ GET http://localhost:5000/v1/api/shop/get/publish
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 x-client-id: 6561879dfb0e542382ad7dd7
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE4MzI4MTYsImV4cCI6MTcwMjAwNTYxNn0.NMJtKF43fmFzY4ym8k-Q0iUSKGZ2GUp96A1HLMnadak
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDIyNTYxNTksImV4cCI6MTcwMjQyODk1OX0.CY0qFvO3ImYeD_ZRIlQt8Mo01mkKZdpj2m30yJnSW6I
 
 {
     
@@ -144,7 +144,7 @@ POST http://localhost:5000/v1/api/shop/publish/6567f08969b2f3c414f99259
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 x-client-id: 6561879dfb0e542382ad7dd7
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE4MzI4MTYsImV4cCI6MTcwMjAwNTYxNn0.NMJtKF43fmFzY4ym8k-Q0iUSKGZ2GUp96A1HLMnadak
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDIyNTYxNTksImV4cCI6MTcwMjQyODk1OX0.CY0qFvO3ImYeD_ZRIlQt8Mo01mkKZdpj2m30yJnSW6I
 
 {
     
@@ -156,7 +156,7 @@ POST http://localhost:5000/v1/api/shop/turnOff/publish/6567f08969b2f3c414f99259
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 x-client-id: 6561879dfb0e542382ad7dd7
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE4MzI4MTYsImV4cCI6MTcwMjAwNTYxNn0.NMJtKF43fmFzY4ym8k-Q0iUSKGZ2GUp96A1HLMnadak
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDIyNTYxNTksImV4cCI6MTcwMjQyODk1OX0.CY0qFvO3ImYeD_ZRIlQt8Mo01mkKZdpj2m30yJnSW6I
 
 {
     
@@ -200,7 +200,7 @@ PATCH http://localhost:5000/v1/api/shop/update/product/6567f08969b2f3c414f99259
 Content-Type: application/json 
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 x-client-id: 6561879dfb0e542382ad7dd7
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE4MzI4MTYsImV4cCI6MTcwMjAwNTYxNn0.NMJtKF43fmFzY4ym8k-Q0iUSKGZ2GUp96A1HLMnadak
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDIyNTYxNTksImV4cCI6MTcwMjQyODk1OX0.CY0qFvO3ImYeD_ZRIlQt8Mo01mkKZdpj2m30yJnSW6I
 
 {
     "product_attributes": {
@@ -222,18 +222,18 @@ POST http://localhost:5000/v1/api/shop/createDiscount
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 x-client-id: 6561879dfb0e542382ad7dd7
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE4MzI4MTYsImV4cCI6MTcwMjAwNTYxNn0.NMJtKF43fmFzY4ym8k-Q0iUSKGZ2GUp96A1HLMnadak
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDIyNTYxNTksImV4cCI6MTcwMjQyODk1OX0.CY0qFvO3ImYeD_ZRIlQt8Mo01mkKZdpj2m30yJnSW6I
 
 {
-    "name":"discount for international",
-    "code": "SHOP-INTERNATIONAL",
-    "startDate": "2023-12-06 11:06:00",
-    "endDate": "2023-12-10 12:00:00",
+    "name":"new discount for test",
+    "code": "TEST-DISCOUNT",
+    "startDate": "2023-12-10 11:06:00",
+    "endDate": "2023-12-15 12:00:00",
     "isActive": true,
     "minOrderValue": 10,
     "aplliesTo": "specify",
-    "productIds": ["6567f08969b2f3c414f99259", "656c4fe22899f8047e373463"],
-    "description": "discount for foreign",
+    "productIds": ["656c51dd55769ac88c8e273a", "656c51301929aa120ffdd2cb"],
+    "description": "discount to test",
     "type": "percentage", 
     "value": "5",
     "maxValue": 500,
@@ -248,7 +248,7 @@ POST http://localhost:5000/v1/api/shop/getAllDiscountByShopId
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 x-client-id: 6561879dfb0e542382ad7dd7
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDE4MzI4MTYsImV4cCI6MTcwMjAwNTYxNn0.NMJtKF43fmFzY4ym8k-Q0iUSKGZ2GUp96A1HLMnadak
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDIyNTYxNTksImV4cCI6MTcwMjQyODk1OX0.CY0qFvO3ImYeD_ZRIlQt8Mo01mkKZdpj2m30yJnSW6I
 
 {
     "limit": "10", 
@@ -288,7 +288,7 @@ Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 
 {
-    "code": "SHOP-1122", 
+    "code": "SHOP-INTERNATIONAL", 
     "shopId": "6561879dfb0e542382ad7dd7", 
     "userId": "",
     "limit": "10",
@@ -317,11 +317,11 @@ x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8
 {
    "userId": "USER111",  
    "product": {
-            "productId": "656c51301929aa120ffdd2cb",
+            "productId": "656c4fe22899f8047e373463",
             "shopId": "6561879dfb0e542382ad7dd7",
             "quantity": 4,
-            "name": "cat shirt ",     
-            "price": 15 
+            "name": "flower shirt ",     
+            "price": 20
    }
 }
 
@@ -360,3 +360,59 @@ x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8
    "userId": "", 
    "productId": "656c51dd55769ac88c8e273a"
 }
+
+
+
+### checkout order
+POST http://localhost:5000/v1/api/shop/checkout
+Content-Type: application/json
+x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
+
+{
+    "cartId": "65719ef6cbb462760ab3393d",
+    "userId": "USER111",
+    "shop_order_id": [
+                        {
+                            "shopId": "6561879dfb0e542382ad7dd7",
+                            "shopDiscount": [{
+                                "shopId": "6561879dfb0e542382ad7dd7",
+                                "discountId": "65765e3a10d85c6c83013616",
+                                "codeId": "TEST-DISCOUNT"
+                            }],
+                            "itemProduct": [
+                                {
+                                    "price": 4,
+                                    "quantity": 15,
+                                    "productId": "656c51dd55769ac88c8e273a"
+                                }  
+                            ]  
+                        },
+                        {
+                            "shopId": "6561879dfb0e542382ad7dd7",
+                            "shopDiscount": [{
+                                "shopId": "6561879dfb0e542382ad7dd7",
+                                "discountId": "65765e3a10d85c6c83013616",
+                                "codeId": "TEST-DISCOUNT"
+                            }],
+                            "itemProduct": [
+                                {
+                                    "price": 15,
+                                    "quantity": 4,
+                                    "productId": "656c51301929aa120ffdd2cb"
+                                }  
+                            ]  
+                        },{
+                            "shopId": "6561879dfb0e542382ad7dd7",
+                            "shopDiscount": [],
+                            "itemProduct": [
+                                {
+                                    "price": 20,
+                                    "quantity": 5,
+                                    "productId": "656c4fe22899f8047e373463"
+                                }  
+                            ]  
+                        }
+                    ]
+}
+
+

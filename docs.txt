@@ -460,15 +460,83 @@ nếu mà có thì "$" này sẽ đại diện cho update chính phần tử đ�
         ]
     */
 
+Section 25: Order Service Api (part 1)
+Create new Order [User]
+Query Order [User]
+Query order using Id [User]
+Cancel Order [User]
+Update Order status [Admin]
+
+
+_ Promise.all: nhận một mảng các Promise và trả về một Promise mới,
+chỉ được giải quyết khi tất cả các Promise trong mảng được giải quyết hoặc từ chối. 
+Promise là một đối tượng biểu diễn kết quả của một tác vụ bất đồng bộ, có thể là thành công hoặc thất bại.
+
+
+ return await Promise.all( products.map( async p =>{
+        const foundProduct = await findProductDetail({ product_id: p.productId, unSelect: ['__v'] });
+        if(foundProduct){
+            return {
+                price: foundProduct.product_price,
+                quantity: p.quantity,
+                productId: p.productId
+            }
+        }
+    }) )
+
+    => vì đây là một hàm bất đồng bộ -> Nó sẽ có thể trả về 1 promise nếu ko có await 
+    Vì nếu ko có await hàm sẽ trả về một Promise chứa một mảng các promise -> chứ ko phải một mảng các đối tượng sản phẩm 
+    => để lấy được giá trị thật sự ta dùng await để chờ đợi nó được giải quyết hoặc từ chối.
+    => Hàm Promise.all() cũng trả về một promise -> nên ta sẽ dùng await để lấy đc kết quả của nó
+
+
+Promise.all() là một phương thức tĩnh của lớp Promise, 
+cho phép xử lý nhiều Promise cùng một lúc, song song với nhau, 
+và trả về một Promise mới biểu diễn kết quả của tất cả các Promise đầu vào.
+
+=> Mục đích của Promise.all() là để tổng hợp kết quả của nhiều tác vụ bất đồng bộ liên quan đến nhau.
+VÍ DỤ:
+const axios = require("axios");
+
+const getUser = async (id) => {
+// Gọi API lấy thông tin người dùng theo id
+const config = {
+method: "get", // Phương thức gọi API là get
+url: `https://example.com/api/users/${id}`, // URL của API, có chứa id của người dùng
+headers: {
+// Các tiêu đề yêu cầu, có thể bao gồm mã xác thực, loại nội dung, ngôn ngữ, v.v.
+Authorization: "Bearer some-token", // Mã xác thực để truy cập API
+"Content-Type": "application/json", // Loại nội dung của yêu cầu là JSON
+Accept: "application/json", // Loại nội dung mong muốn của phản hồi là JSON
+},
+};
+
+return axios(config)
+.then((response) => {
+    return response.data;
+})
+
+.catch((error) => {
+
+// Trả về một Promise biểu diễn kết quả
+return error.response.data;
+});
+};
 
 
 
+const getPosts = async (userId) => {
+// Gọi API lấy danh sách bài viết của người dùng theo userId
+// Trả về một Promise biểu diễn kết quả
+};
 
+Ở trên ta đã tạo 2 hàm có chứa promise để thực hiện các tác vụ:
+Giờ đây ta sẽ áp dụng promise all vào :
 
-
-
-
-
+// Sử dụng Promise.all() để gọi hai API song song và lấy kết quả
+const [user, posts] = await Promise.all([getUser(1), getPosts(1)]);
+console.log(user); // Đối tượng người dùng
+console.log(posts); // Mảng các đối tượng bài viết
 
 
 
@@ -500,3 +568,4 @@ chúng ta phải ép kiểu về objectId -> const {Types} = require('mongoose')
 mongose DB cho phép chúng ta có 100 objects lồng nhau nested object 100 
 mongose DB được thiết kế xử lý khối lượng lớn và Có thể mở rộng theo chiều ngang hay chiều dọc ... để xử lý dữ liệu nhiều hơn
 * chúng ta dùng .then() bất đồng bộ cho nó giảm thời gian tải nhưng chúng ta sử dụng await thì chúng ta sữ hứng cái kết quả để làm việc sử dụng "await"
+* Chúng ta thưởng sử dụng Promise.all() khi chúng ta muốn chờ đợi tất cả các Promise đầu vào được thực hiện trước khi tiếp tục mã program

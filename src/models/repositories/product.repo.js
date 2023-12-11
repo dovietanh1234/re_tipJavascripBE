@@ -128,6 +128,21 @@ const turnOffpublishProduct_repo = async ({ product_shop, product_id }) => {
 }
 
 
+const checkProductByServer = async ( products ) =>{
+    // add more fields in object in array use map:
+    return await Promise.all( products.map( async p =>{
+        const foundProduct = await findProductDetail({ product_id: p.productId, unSelect: ['__v'] });
+        if(foundProduct){
+            return {
+                price: foundProduct.product_price,
+                quantity: p.quantity,
+                productId: p.productId
+            }
+        }
+    }) )
+}
+
+
 module.exports = {
     findAllDrafts_repo,
     publishProduct_repo,
@@ -137,5 +152,6 @@ module.exports = {
     findAllProducts,
     findProductDetail,
     updateProductById,
-    findProductDetail_follow_field
+    findProductDetail_follow_field,
+    checkProductByServer
 }
