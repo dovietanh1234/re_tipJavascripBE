@@ -5,7 +5,9 @@ const ProductController = require('../../controllers/product.controller');
 const accessController = require('../../controllers/access.controller');
 const discountController = require('../../controllers/discount.controller');
 const checkoutController = require('../../controllers/checkout.controller');
+const inventoryController = require('../../controllers/inventory.controller');
 const { asyncHandle2 } = require('../../helpers/asyncHandle2');
+const { authentication2 } = require('../../auth/authUtils');
 const router = express.Router();
 
 //findProductDetail
@@ -18,9 +20,12 @@ router.post('/shop/login', asyncHandle2(accessController.login));
 // discount:
 router.post('/shop/applyDiscountCode', asyncHandle2(discountController.applyDiscountCode));
 router.get('/shop/getAllDiscountByProductId', asyncHandle2(discountController.getAllDiscountCodeByProductId));
+
 //CHECKOUT:
+router.post('/shop/checkout/review', asyncHandle2(checkoutController.checkout));
 
-router.post('/shop/checkout', asyncHandle2(checkoutController.checkout));
-
+//INVENTORY:
+router.use(authentication2);
+router.post('/shop/addInventory',  asyncHandle2(inventoryController.addStock));
 
 module.exports = router;

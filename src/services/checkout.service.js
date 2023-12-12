@@ -5,6 +5,8 @@ const { discount } = require('../models/discount.model');
 const { findCartById } = require("../models/repositories/checkout.repo");
 const { checkProductByServer } = require('../models/repositories/product.repo');
 const { getDiscountAmount } = require('../services/discount.service');
+const { accquireLock, releaseLock } = require('./redis.service');
+const { order } = require('../models/order.model');
 
 class CheckoutService {
      
@@ -108,14 +110,94 @@ class CheckoutService {
                // total last checkout:
                checkoutOrder.totalCheckout += itemCheckout.priceApplyDiscount;
                shop_order_id_new.push(itemCheckout);
-
         }
+
+        // we can save "shop_order_id_new" in temporary collection to checking user status
 
         return {
             shop_order_id,
             shop_order_id_new,
             checkoutOrder
         }
+    }
+
+
+    static async orderByUser({
+        shop_order_id,
+        cartId,
+        userId, 
+        userAddress,
+        userPayment
+    }){
+
+        const { shop_order_id_new, checkoutOrder } = await CheckoutService.checkOutReview({
+            cartId, 
+            userId, 
+            shop_order_id
+        });
+
+        // check again -> use an algorithm flatmap -> get all products -> because it nested together -> we map in an array
+        // so after that: we will check this product in the inventory stock is it has any products in stock?
+
+        // step 1: get new array product (apply flatMap):
+        const products = shop_order_id_new.flatMap( order =>  order.itemProduct );
+
+        console.log("mảng product mới: " + products);
+        const acquireProduct = []
+
+        // apply optimistic lock to check products in inventory stock
+        for( let i = 0; i < products.length; i++ ){
+            const {productId, quantity} = products[1];
+            // we have created the lock on the redis.service.js:
+            // apply optimistic lock:
+            const keyLock = await accquireLock( productId, quantity, cartId );
+            // if something unexpected happens like: product sold out, oversold product ... return notify for customer
+            acquireProduct.push(keyLock?true:false ); // we will check later if have any false value send notify for customer
+            
+            if(keyLock){
+               return await releaseLock(keyLock);
+            }
+        }
+
+        // check if have another product expired or oversold in acquireProduct:
+        if( acquireProduct.includes(false) ){
+            throw new BadRequestError("some products have updated please return your cart");
+        }
+
+        // if all products finished => create new order(we dont create schema order) : 
+        const newOrder = await order.create({
+            orderUserId: userId,
+            orderCheckout: checkoutOrder, 
+            orderShipping: userAddress,
+            orderPayment: userPayment,
+            orderProducts: shop_order_id_new
+        });
+
+        // if isert success -> remove all products in cart
+        if( newOrder ){
+                // remove product in cart
+        }   
+        return newOrder;
+    }
+
+    // func: query orders [users] -> user get total price in order
+    static async getOrdersByUser(){
+
+    }
+
+    // get order using Id (User)
+    static async getOneOrderByUser(){
+
+    }
+
+   // cancel order by userId
+    static async cancelOrderByUser(){
+
+    }
+
+    // update order status -> admin or shop
+    static async updateOrderStatusByUser(){
+            
     }
 
 }

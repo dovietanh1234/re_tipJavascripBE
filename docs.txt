@@ -539,6 +539,236 @@ console.log(user); // Đối tượng người dùng
 console.log(posts); // Mảng các đối tượng bài viết
 
 
+SECTION 26: Order service Part 2 | Tiếp đến là Redis chuyên sâu.
+
+sau khi review order xong ở bài 25  -> ở bài này tạo bảng order để người dùng order
+=> Khoá bi quan và Khoá lạc quan
+
+có 2 cases xảy ra:
+1. vừa kiểm kê trong kho có đủ sản phẩm hay không ( inventory stock ) nếu còn trong kho là 10 mà khi mua 11 thì chúng ta phải báo lỗi
+2. khi thanh toán tiền mới trừ sản phẩm trong kho 
+
+sử dụng thuật toán flatmap:
+
+  Xử lý các chuỗi kí tự có chứa các kí tự đặc biệt, như dấu phẩy, dấu chấm, dấu cách, v.v. 
+  Ví dụ, ta có một chuỗi "Hello, world!". 
+  Ta có thể sử dụng flatmap để tách chuỗi thành các từ riêng biệt, bỏ qua các kí tự đặc biệt, 
+  và trả về một mảng gồm hai phần tử: ["Hello", "world"].
+
+Xử lý các dữ liệu có cấu trúc phân cấp, như JSON, XML, v.v. Ví dụ, ta có một đối tượng JSON như sau:
+
+{
+"name": "Alice",
+"age": 25,
+"hobbies": ["reading", "writing", "singing"]
+}
+ => ["Alice", 25, "reading", "writing", "singing"].
+
+
+-> optimistic locks ( khoá lạc quan ) => Khoá lạc quan là khoá CHẶN HẾT CÁC LUỒNG ĐI CỦA NHIỀU LUỒNG chỉ cho MỘT LUỒNG đi vào
+sau đó lấy giá trị trả về! -> Nó sẽ sử dụng trong trường hợp không để tồn kho quá bán 
+nếu làm khoá bi quan và khoá lạc quan không ai có thể qua mặt redis được
+
+npm i redis --save
+
+CHẠY REDIS TRÊN DOCKER:
+mở terminal gõ:
+docker ps
+để kiểm tra xem có ứng dụng nào đang chạy trên docker
+sau đó truy cập vào link: https://redis.io/docs/install/install-stack/docker/
+copy: docker run -d --name redis-stack-server -p 6379:6379 redis/redis-stack-server:latest
+
+vào terminal giống rapidMQ Ý MÀ!
+
+sau khi đã chạy được redis trên docker:
+-> ta sẽ thử làm việc redis ( lưu dữ liệu lấy dữ liệu vào redis thông qua các câu lệnh trên terminal )
+copy: 
+exec -it redis-stack-server sh  -> enter xuống dòng -> gõ: # redis-cli:
+lúc này nó hiện ra cổng là:
+
+exec -it redis-stack-server sh
+# redis-cli
+127.0.0.1:6379> set id 1
+OK
+127.0.0.1:6379> get id
+1
+
+
+code:
+const redis = require('redis');
+const { promisify } = require('util');
+const redisClient = redis.createClient(); 
+
+const pexpire = promisify(redisClient.pExpire).bind(redisClient);
+
+_ sử dụng thư viện redis kết nối và làm việc với hệ thống lưu trữ dữ liệu key-value redis
+_ sử dụng hàm "promisify" của thư viện util -> mục đích: một hàm chuyển đổi callback-based thành một hàm trả về Promise
+_ tạo một client kết nối với redis Bằng method "createClient()" của thư viện redis
+
+_ ta tạo một hàm "pexpire" bằng cách sử dụng hàm "promisify" với tham số là:  method "pExpire" của client redis 
+=> pExpire dùng để thiết lập thời gian sống trong một khoá trong redis( tính bằng mili giây ) | LẬP THỜI GIAN
+_ sau đó sử dụng method "bind()" để gắn hàm "pexpire" với đối tượng client redis
+
+VÌ VẬY ta đã sử dụng hàm "pexpire" để thiết lập thời gian sống cho các khóa trong redis một cách dễ dàng và hiệu quả
+với cú pháp là:
+           await pexpire(key, milliseconds).
+
+
+    const setnxAsync = promisify(redisClient.setNX).bind(redisClient);
+
+_ Phương thức setNX dùng để thiết lập giá trị cho một khóa trong redis | LẬP GIÁ TRỊ
+_ Nếu khóa đó chưa tồn tại. thì ta sẽ KHÔNG sử dụng phương thức "bind" để gắn hàm "setnxAsync" với đối tượng client redis
+
+=>  Bạn có thể sử dụng hàm "setnxAsync" để thiết lập giá trị cho các khóa trong redis một cách dễ dàng và hiệu quả,
+ bằng cách sử dụng cú pháp:
+             await setnxAsync(key, value).
+
+
+code:
+const redis = require('redis');
+const { promisify } = require('util');
+const redisClient = redis.createClient(); 
+
+const pexpire = promisify(redisClient.pExpire).bind(redisClient);
+const setnxAsync = promisify(redisClient.setNX).bind(redisClient);
+
+const accquireLock = async( productId, quantity, cartId ) =>{
+    const key = `lock_v2023_${productId}`
+    ta sẽ set nó có bao nhiêu lần thử được lấy khoá?   
+    const reTryTime = 10; // for accept 10 times to try get the key
+    thời gian tạo khoá là bao nhiêu giây?
+    const expireTime = 3000; // 3 giây
+}
+
+Hàm "accquireLock" sẽ có nhiệm vụ tạo một cái khoá -> cái khoá này sẽ được đưa cho người đi trước! người đi trước sẽ cần khoá và họ
+sẽ làm các nhiệm vụ như đặt hàng xong, trừ số lượng trong kho xong!... thì họ sẽ đưa lại khoá cho người ở sau để họ
+thực hiện các hành động của họ
+_ và nếu mà chưa lấy được thì người ta phải chờ!  -> mình sẽ cho phép người ta chờ bao nhiêu lần?
+
+const accquireLock = async( productId, quantity, cartId ) =>{
+    const key = `lock_v2023_${productId}`
+    const reTryTime = 10; 
+    const expireTime = 3000;
+
+    // 10 times to get key:
+    for( let i = 0; i < reTryTime; i++ ){
+        const result = await setnxAsync(key, 1);
+
+        if( result === 1 ){
+            return key;
+        }else{
+            await new Promise( (resolve, reject)=> setTimeout(resolve, 50) ); 
+        }
+    }
+
+}
+
+hàm accquireLock với ba tham số là productId, quantity và cartId
+Hàm này dùng để cố gắng khóa một sản phẩm trong redis
+để tránh xung đột khi có nhiều người dùng cùng mua sản phẩm đó
+Hàm này sử dụng cơ chế optimistic locking, tức là không chặn các yêu cầu khác
+mà chỉ kiểm tra xem sản phẩm đã bị khóa hay chưa 
+
+Trong hàm accquireLock:
+_ tạo một biến key là một chuỗi có dạng lock_v2023_${productId}, là khóa dùng để đánh dấu sản phẩm đã bị khóa hay chưa
+_ ta tạo hai biến "reTryTime" và "expireTime" là số lần thử lại và thời gian tạo của khóa, tương ứng là 10 và 3000 mili giây.
+_ sử dụng một vòng lặp for để thử khóa sản phẩm nhiều lần
+_ Mỗi lần, bạn gọi hàm setnxAsync với tham số là key và 1. Hàm này sẽ trả về 1 nếu khóa sản phẩm thành công
+_ Nếu kết quả của hàm setnxAsync là 0, tức là khóa sản phẩm thất bại, bạn chờ 50 mili giây bằng
+ cách sử dụng hàm setTimeout trong một Promise và resolve được giải quyết với giá trị undefined
+
+
+code:
+const releaseLock = async keylock => {
+    const deleteAsyncKey = promisify(redisClient.del).bind(redisClient);
+}
+
+•  Bạn tạo một hàm deleteAsyncKey bằng cách sử dụng hàm promisify với tham số là phương thức del của client redis.
+ Phương thức del dùng để xóa một hoặc nhiều khóa trong redis. Bạn cũng sử dụng phương thức bind để gắn hàm deleteAsyncKey
+  với đối tượng client redis.
+
+•  Bạn định nghĩa một hàm releaseLock với một tham số là keylock. Hàm này dùng để giải phóng một khóa trong redis,
+ bằng cách gọi hàm deleteAsyncKey với tham số là keylock.
+
+tại sao phải sử dụng ".bind()":
+phải sử dụng ".bind()" để gắn hàm "deleteAsyncKey" với đối tượng client redis
+vì: hàm deleteAsyncKey được tạo ra bằng cách sử dụng hàm promisify( một hàm dùng để chuyển đổi một hàm callback-based thành một hàm trả về Promise )
+và khi bạn sử dụng hàm promisify, bạn cần phải xác định ngữ cảnh (context) của hàm ban đầu
+-> tức là đối tượng mà hàm đó thuộc về.
+
+và nếu ta không xác định ngữ cảnh cho promisify() thì hàm đó sẽ mặc định sử dụng đối tượng global làm ngữ cảnh có thể gây ra lỗi!
+
+Phương thức "bind" là một phương thức của prototype( giao thức ) ...
+=> cho phép bạn tạo ra một hàm mới, có ngữ cảnh và các tham số được xác định trước
+=> Bạn có thể sử dụng phương thức "bind" để gắn một đối tượng bất kỳ làm ngữ cảnh cho một hàm
+
+
+và khi ta sử dụng context ".bind()" => thì ta sẽ gắn đối tượng client redis làm ngữ cảnh cho hàm deleteAsyncKey
+Từ đó: đảm bảo rằng khi bạn gọi hàm "deleteAsyncKey" nó sẽ thực hiện phương thức ".del" của client REDIS chứ KHÔNG PHẢI đối tượng global
+
+Một ví dụ về cách apply ".bind()" trong code:
+
+const person = {
+    name: "Alice",
+    age: 25,
+    greet: function(){ // arrow function không thể dùng đối tượng this nhé!
+        console.log("hello my name is: " + this.name);
+    }
+}
+
+=> trong đói tượng "person" này ta đang có method "greet()" là một hàm -> khi ta gọi method này ngữ cảnh của nó sẽ là "person"
+và giá trị của "this" trong hàm này là đối tượng "Person" => ta có thể truy cập thuộc tính "name" của đối tượng "person" bằng cách 
+sử dụng "this.name"
+
+person.greet(); // hello my name is ALICE
+
+_ tuy nhiên nếu ta gán greet cho một biến khác gọi biến đó như một hàm => Ngữ cảnh đó sẽ thay đổi lúc này ngữ cảnh đó sẽ toàn cục window
+-> giá trị "this" trong hàm sẽ là đối tượng toàn cục => ta không thể truy cập thuộc tính "name" vì this lúc này là toàn cục 
+this.name = undefined
+
+const sayHello = person.greet; // gọi đến hàm greet trong object "person" và gán hàm "greet" cho biến "sayHello"!
+sayHello(); // hello my name is undefined!
+
+VẬY ĐỂ KHẮC PHỤC ĐIỀU NÀY:
+để giữ nguyên ngữ cảnh của một hàm: ta sử dụng method "bind" "call" or "apply" để chỉ định đối tượng ngữ cảnh cho hàm 
+các phương thức này cho phép ta gắn or gọi một hàm với một đối tượng ngữ cảnh cụ thể
+
+const sayHello = person.greet.bind(person); // gắn greet vào đối tượng person
+sayHello();  // hello my name is ALICE
+
+person.greet.call(person); // gọi hàm greet với đối tượng person làm ngữ cảnh
+// Hello, my name is Alice
+
+person.greet.apply(person); // gọi hàm greet với đối tượng person làm ngữ cảnh
+// Hello, my name is Alice
+
+
+$gte của mongose DB node js là một toán tử SO SÁNH dùng để LỌC ra các tài liệu (document) có giá trị một trường (field)
+lớn hơn or bằng (greater or equal) một giá trị lớn hơn cho trước
+ex: 
+db.inventory.find({ quantity: { $gte: 20 } }); -> lấy các giá trị bằng 20 or lớn hơn 20 ...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -569,3 +799,12 @@ mongose DB cho phép chúng ta có 100 objects lồng nhau nested object 100
 mongose DB được thiết kế xử lý khối lượng lớn và Có thể mở rộng theo chiều ngang hay chiều dọc ... để xử lý dữ liệu nhiều hơn
 * chúng ta dùng .then() bất đồng bộ cho nó giảm thời gian tải nhưng chúng ta sử dụng await thì chúng ta sữ hứng cái kết quả để làm việc sử dụng "await"
 * Chúng ta thưởng sử dụng Promise.all() khi chúng ta muốn chờ đợi tất cả các Promise đầu vào được thực hiện trước khi tiếp tục mã program
+* Thuật toán flat map -> sử dụng: các dữ liệu có cấu trúc phức tạp ( mảng trong mảng...  ) 
+thuật toán flat map có 2 bước chính: 
+_ làm phẳng ( flatten ) -> thay đổi dữ liệu phức tạp thành dữ liệu đơn giản. ex( mảng trong mảng -> sẽ chuyển đổi mảng con thành 1 mảng )
+_ ánh xạ (map) -> áp dụng 1 function cho mỗi phần tử của dữ liệu được làm phằng ( mảng con ) trả về kết quả mới!
+
+* optimistic locks ( khoá lạc quan ) => Khoá lạc quan là khoá CHẶN HẾT CÁC LUỒNG ĐI CỦA NHIỀU LUỒNG chỉ cho MỘT LUỒNG đi vào
+sau đó lấy giá trị trả về!
+* Phương thức "bind" là một phương thức của prototype( giao thức ) ...
+=> cho phép bạn tạo ra một hàm mới, có ngữ cảnh và các tham số được xác định trước

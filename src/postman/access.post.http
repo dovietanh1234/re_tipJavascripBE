@@ -364,7 +364,7 @@ x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8
 
 
 ### checkout order
-POST http://localhost:5000/v1/api/shop/checkout
+POST http://localhost:5000/v1/api/shop/checkout/review
 Content-Type: application/json
 x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
 
@@ -415,4 +415,20 @@ x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8
                     ]
 }
 
+
+
+
+### add product in inventory: 
+POST http://localhost:5000/v1/api//shop/addInventory
+Content-Type: application/json
+x-api-key: 6239241f841ddfffb01250b07b3dfbda3b596c93264a6ec03269ba35653f5d15f68e8df8e91d0a72530cb3af23f139fdb8336fcee2f64287417e9add96f363dc
+x-client-id: 6561879dfb0e542382ad7dd7
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2NTYxODc5ZGZiMGU1NDIzODJhZDdkZDciLCJlbWFpbCI6InNob3BUaXAwOEBnbWFpbC5jb20iLCJyb2xlcyI6IlNIT1AiLCJpYXQiOjE3MDIyNTYxNTksImV4cCI6MTcwMjQyODk1OX0.CY0qFvO3ImYeD_ZRIlQt8Mo01mkKZdpj2m30yJnSW6I
+
+{
+     "stock": "",
+        "productId": "",
+        "shopId": "",
+        "location": "Ha Noi",
+}
 

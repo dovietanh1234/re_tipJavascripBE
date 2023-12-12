@@ -1,7 +1,5 @@
 'use strict'
 
-'use strict'
-
 //!dmbgum -> generate schema for we are not write code:
 const  { model, Schema } = require('mongoose');
 
